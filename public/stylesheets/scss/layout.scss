@@ -1,0 +1,284 @@
+///////////////////////////////////////////
+// SASS
+///////////////////////////////////////////
+
+	// Mixins to Be Reaused by Grid Declarations for Desktop, Tablet and Mobile
+
+		// [MIXIN #01] 1-12 Column Grid, (d)(t)(m)--(1-12)c
+		@mixin grid($columns, $areas) {
+			-ms-grid-columns: (1fr)[$columns];
+			grid-template-columns: repeat($columns, 1fr);
+			grid-template-areas: $areas;
+		}
+
+		// [MIXIN #02] 1-12 Column Grid with LEFT Sidebar, (d)(t)(m)--sb(5-50)--(1-12)c
+		@mixin sidebarLeft($percentage, $columns, $areas) {
+			-ms-grid-columns: $percentage (1fr)[$columns];
+			grid-template-columns: $percentage repeat($columns, 1fr);
+			grid-template-areas: $areas;
+		}
+
+		// [MIXIN #03] 1-12 Column Grid with RIGHT Sidebar, (d)(t)(m)--(1-12)c--sb(5-50)
+		@mixin sidebarRight($percentage, $columns, $areas) {
+			-ms-grid-columns: (1fr)[$columns] $percentage;
+			grid-template-columns: repeat($columns, 1fr) $percentage;
+			grid-template-areas: $areas;
+		}
+
+	// Type Styles
+
+		$font-primary: 'Montserrat', sans-serif;
+		$font-secondary: 'Merriweather', serif;
+
+	// Colors
+
+		// Primary Color, i.e. Brand Colors
+
+			$default: #a7f700;
+			$default-accent: #101112; // 6% Darker
+
+		// Secondary Use Colors
+
+			$success-green: #36F485;
+			$success-green-accent: #16F271; // 7% Darker
+
+			$warning-orange: #FAA434;
+			$warning-orange-accent: #F99513; // 7% Darker
+
+			$error-red: #F44336;
+			$error-red-accent: #F22516; // 9% Darker
+
+		// Blacks & Whites
+
+			$black-100: rgba(32, 33, 36, 1);
+			$black-75: rgba(32, 33, 36, 0.75);
+			$black-50: rgba(32, 33, 36, 0.50);
+			$black-25: rgba(32, 33, 36, 0.25);
+
+			$white-100: rgba(255, 255, 255, 1);
+			$white-75: rgba(255, 255, 255, 0.75);
+			$white-50: rgba(255, 255, 255, 0.50);
+			$white-25: rgba(255, 255, 255, 0.25);
+
+		// Borders
+
+			$bdr: #E3E3E3;
+
+///////////////////////////////////////////
+// Everything
+///////////////////////////////////////////
+
+	* {
+		box-sizing: border-box;
+	}
+
+		html {
+			font-family: $font-primary;
+			color: $black-100;
+
+			background: $white-100;
+
+		}
+
+			body {
+
+			}
+
+///////////////////////////////////////////
+// Layout
+///////////////////////////////////////////
+
+	.layout {
+		display: grid;
+	}
+
+		.panel {
+			grid-column-gap: 0;
+			grid-row-gap: 0;
+
+			padding: 0;
+		}
+
+		.card {
+			grid-row-gap: 25px;
+			grid-column-gap: 25px;
+
+			// margin: 25px;
+			padding: 25px;
+
+		}
+
+			.d1c {
+				@include grid(1, "col");
+			}
+
+			.d2c {
+				@include grid(2, "col col");
+			}
+
+			.d3c {
+				@include grid(3, "col col col");
+			}
+
+			.d4c {
+				@include grid(4, "col col col col");
+			}
+
+			.d5c {
+				@include grid(5, "col col col col col");
+			}
+
+			.d6c {
+				@include grid(6, "col col col col col col");
+			}
+
+			@media (max-width: 1300px) {
+
+				.t1c {
+					@include grid(1, "col");
+				}
+
+				.t2c {
+					@include grid(2, "col col");
+				}
+
+				.t3c {
+					@include grid(3, "col col col");
+				}
+
+				.t4c {
+					@include grid(4, "col col col col");
+				}
+
+				.t5c {
+					@include grid(5, "col col col col col");
+				}
+
+				.t6c {
+					@include grid(6, "col col col col col col");
+				}
+
+			}
+
+			@media (max-width: 700px) {
+
+				.m1c {
+					@include grid(1, "col");
+				}
+
+				.m2c {
+					@include grid(2, "col col");
+				}
+
+				.m3c {
+					@include grid(3, "col col col");
+				}
+
+				.m4c {
+					@include grid(4, "col col col col");
+				}
+
+				.m5c {
+					@include grid(5, "col col col col col");
+				}
+
+				.m6c {
+					@include grid(6, "col col col col col col");
+				}
+
+			}
+
+///////////////////////////////////////////
+// Type
+///////////////////////////////////////////
+
+	a, h1, h2, h3, h4, h5, h6, p, ul, ol, li {
+		margin: 0;
+		padding: 0;
+	}
+
+	// Remove Underlines From All Links
+	a, a:hover, a:focus, a:active, a:visited {
+		text-decoration: none;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		font-family: $font-primary;
+		color: $default;
+		font-weight: 700;
+
+		display: inline-block;
+		margin: 0 0 5px 0;
+		padding: 15px;
+
+		background: $black-100;
+
+	}
+
+		.h--block {
+			display: block;
+		}
+
+		.h--alt {
+			background: $default;
+			color: $black-100;
+		}
+
+		h1 {
+			font-size: 31px;
+			line-height: 39px;
+		}
+
+		h2 {
+			font-size: 27px;
+			line-height: 35px;
+		}
+
+		h3 {
+			font-size: 23px;
+			line-height: 31px;
+		}
+
+		h4 {
+			font-size: 19px;
+			line-height: 27px;
+		}
+
+		h5 {
+			font-size: 15px;
+			line-height: 12px;
+		}
+
+		h6 {
+			font-size: 11px;
+			line-height: 19px;
+		}
+
+	p, ul li, ol li {
+		font-family: $font-secondary;
+		font-size: 11px;
+		line-height: 19px;
+		font-weight: 400;
+		color: $black-100;
+	}
+
+		ul, ol {
+			margin: 0 0 15px 15px;
+		}
+
+		p {
+			margin: 15px 0;
+		}
+
+///////////////////////////////////////////
+// Forms
+///////////////////////////////////////////
+
+	// Prevent Chrome From Applying Its Default Yellow Background On Autofilled Form Inputs
+	input:-webkit-autofill {
+		-webkit-box-shadow: 0 0 0 50px #ffffff inset;
+	}
+
+///////////////////////////////////////////
+// Homepage Specific
+///////////////////////////////////////////
