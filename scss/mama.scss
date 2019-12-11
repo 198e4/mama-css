@@ -1,0 +1,3235 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// BOILERPLATE
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	// Everything
+	* {
+		box-sizing: border-box;
+	}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// LAYOUT BUILDING SASS MIXINS
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	// Mixins to Be Reaused by Grid Declarations for Desktop, Tablet and Mobile
+
+		// [MIXIN #01] Shared Grid Declaration--used in the grid(), sidebarLeft() and sidebarRight() mixins
+		@mixin declareGrid () {
+			display: grid;
+				display: -ms-grid;
+			align-items: flex-start;
+				-webkit-box-align: flex-start;
+				-ms-flex-align: flex-start;
+			justify-content: center;
+				-webkit-box-pack: center;
+				-ms-flex-pack: center;
+			grid-column-gap: 0;
+			grid-row-gap: 0;
+		}
+
+			// [MIXIN #02] 1-12 Column Grid, (d)(t)(m)--(1-12)c
+			@mixin grid($columns, $areas) {
+				@include declareGrid();
+				grid-template-columns: repeat($columns, 1fr);
+				grid-template-areas: $areas;
+				-ms-grid-columns: (1fr)[$columns];
+			}
+
+			// [MIXIN #03] 1-12 Column Grid with LEFT Sidebar, (d)(t)(m)--sb(5-50)--(1-12)c
+			@mixin sidebarLeft($percentage, $columns, $areas) {
+				@include declareGrid();
+				grid-template-columns: $percentage repeat($columns, 1fr);
+				grid-template-areas: $areas;
+				-ms-grid-columns: $percentage (1fr)[$columns];
+			}
+
+			// [MIXIN #04] 1-12 Column Grid with RIGHT Sidebar, (d)(t)(m)--(1-12)c--sb(5-50)
+			@mixin sidebarRight($percentage, $columns, $areas) {
+				@include declareGrid();
+				grid-template-columns: repeat($columns, 1fr) $percentage;
+				grid-template-areas: $areas;
+				-ms-grid-columns: (1fr)[$columns] $percentage;
+			}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// LAYOUTS
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/* Layout Types (Organized by Device Generalization) */
+
+	/* Desktop Layouts */
+
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// 1-12 EQUALLY SPACED COLUMN LAYOUTS
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		/* Purely Column Based Layouts / Up to 12 Columns */
+
+			.d1c, .d-1c, .d--1c, .d_1c, .d__1c {
+				@include grid(1, "col");
+			}
+
+			.d2c, .d-2c, .d--2c, .d_2c, .d__2c {
+				@include grid(2, "col col");
+			}
+
+			.d3c, .d-3c, .d--3c, .d_3c, .d__3c {
+				@include grid(3, "col col col");
+			}
+
+			.d4c, .d-4c, .d--4c, .d_4c, .d__4c {
+				@include grid(4, "col col col col");
+			}
+
+			.d5c, .d-5c, .d--5c, .d_5c, .d__5c {
+				@include grid(5, "col col col col col");
+			}
+
+			.d6c, .d-6c, .d--6c, .d_6c, .d__6c {
+				@include grid(6, "col col col col col col");
+			}
+
+			.d7c, .d-7c, .d--7c, .d_7c, .d__7c {
+				@include grid(7, "col col col col col col col");
+			}
+
+			.d8c, .d-8c, .d--8c, .d_8c, .d__8c {
+				@include grid(8, "col col col col col col col col");
+			}
+
+			.d9c, .d-9c, .d--9c, .d_9c, .d__9c {
+				@include grid(9, "col col col col col col col col col");
+			}
+
+			.d10c, .d-10c, .d--10c, .d_10c, .d__10c {
+				@include grid(10, "col col col col col col col col col col");
+			}
+
+			.d11c, .d-11c, .d--11c, .d_11c, .d__11c {
+				@include grid(11, "col col col col col col col col col col col");
+			}
+
+			.d12c, .d-12c, .d--12c, .d_12c, .d__12c {
+				@include grid(12, "col col col col col col col col col col col col");
+			}
+
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		/* [SIDEBAR LEFT] 5% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+			.dsb51c, .d-sb5-1c, .d--sb5--1c, .d_sb5_1c, .d__sb5__1c {
+				@include sidebarLeft(5%, 1, "col col");
+			}
+
+			.dsb52c, .d-sb5-2c, .d--sb5--2c, .d_sb5_2c, .d__sb5__2c {
+				@include sidebarLeft(5%, 2, "col col col");
+			}
+
+			.dsb53c, .d-sb5-3c, .d--sb5--3c, .d_sb5_3c, .d__sb5__3c  {
+				@include sidebarLeft(5%, 3, "col col col col");
+			}
+
+			.dsb54c, .d-sb5-4c, .d--sb5--4c, .d_sb5_4c, .d__sb5__4c {
+				@include sidebarLeft(5%, 4, "col col col col col");
+			}
+
+			.dsb55c, .d-sb5-5c, .d--sb5--5c, .d_sb5_5c, .d__sb5__5c {
+				@include sidebarLeft(5%, 5, "col col col col col col");
+			}
+
+			.dsb56c, .d-sb5-6c, .d--sb5--6c, .d_sb5_6c, .d__sb5__6c {
+				@include sidebarLeft(5%, 6, "col col col col col col col");
+			}
+
+			.dsb57c, .d-sb5-7c, .d--sb5--7c, .d_sb5_7c, .d__sb5__7c  {
+				@include sidebarLeft(5%, 7, "col col col col col col col col");
+			}
+
+			.dsb58c, .d-sb5-8c, .d--sb5--8c, .d_sb5_8c, .d__sb5__8c  {
+				@include sidebarLeft(5%, 8, "col col col col col col col col col");
+			}
+
+			.dsb59c, .d-sb5-9c, .d--sb5--9c, .d_sb5_9, .d__sb5__9c  {
+				@include sidebarLeft(5%, 9, "col col col col col col col col col col");
+			}
+
+			.dsb510c, .d-sb5-10c, .d--sb5--10c, .d_sb5_10c, .d__sb5__10c  {
+				@include sidebarLeft(5%, 10, "col col col col col col col col col col col");
+			}
+
+			.dsb511c, .d-sb5-11c, .d--sb5--11c, .d_sb5_11c, .d__sb5__11c  {
+				@include sidebarLeft(5%, 11, "col col col col col col col col col col col col");
+			}
+
+			.dsb512c, .d-sb5-12c, .d--sb5--12c, .d_sb5_12c, .d__sb5__12c  {
+				@include sidebarLeft(5%, 12, "col col col col col col col col col col col col col");
+			}
+
+		/* [SIDEBAR LEFT] 10% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+			.dsb101c, .d-sb10-1c, .d--sb10--1c, .d_sb10_1c, .d__sb10__1c {
+				@include sidebarLeft(10%, 1, "col col");
+			}
+
+			.dsb102c, .d-sb10-2c, .d--sb10--2c, .d_sb10_2c, .d__sb10__2c {
+				@include sidebarLeft(10%, 2, "col col col");
+			}
+
+			.dsb103c, .d-sb10-3c, .d--sb10--3c, .d_sb10_3c, .d__sb10__3c  {
+				@include sidebarLeft(10%, 3, "col col col col");
+			}
+
+			.dsb104c, .d-sb10-4c, .d--sb10--4c, .d_sb10_4c, .d__sb10__4c {
+				@include sidebarLeft(10%, 4, "col col col col col");
+			}
+
+			.dsb105c, .d-sb10-5c, .d--sb10--5c, .d_sb10_5c, .d__sb10__5c {
+				@include sidebarLeft(10%, 5, "col col col col col col");
+			}
+
+			.dsb106c, .d-sb10-6c, .d--sb10--6c, .d_sb10_6c, .d__sb10__6c {
+				@include sidebarLeft(10%, 6, "col col col col col col col");
+			}
+
+			.dsb107c, .d-sb10-7c, .d--sb10--7c, .d_sb10_7c, .d__sb10__7c  {
+				@include sidebarLeft(10%, 7, "col col col col col col col col");
+			}
+
+			.dsb108c, .d-sb10-8c, .d--sb10--8c, .d_sb10_8c, .d__sb10__8c  {
+				@include sidebarLeft(10%, 8, "col col col col col col col col col");
+			}
+
+			.dsb109c, .d-sb10-9c, .d--sb10--9c, .d_sb10_9, .d__sb10__9c  {
+				@include sidebarLeft(10%, 9, "col col col col col col col col col col");
+			}
+
+			.dsb1010c, .d-sb10-10c, .d--sb10--10c, .d_sb10_10c, .d__sb10__10c  {
+				@include sidebarLeft(10%, 10, "col col col col col col col col col col col");
+			}
+
+			.dsb1011c, .d-sb10-11c, .d--sb10--11c, .d_sb10_11c, .d__sb10__11c  {
+				@include sidebarLeft(10%, 11, "col col col col col col col col col col col col");
+			}
+
+			.dsb1012c, .d-sb10-12c, .d--sb10--12c, .d_sb10_12c, .d__sb10__12c  {
+				@include sidebarLeft(10%, 12, "col col col col col col col col col col col col col");
+			}
+
+		/* [SIDEBAR LEFT] 15% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+			.dsb151c, .d-sb15-1c, .d--sb15--1c, .d_sb15_1c, .d__sb15__1c {
+				@include sidebarLeft(15%, 1, "col col");
+			}
+
+			.dsb152c, .d-sb15-2c, .d--sb15--2c, .d_sb15_2c, .d__sb15__2c {
+				@include sidebarLeft(15%, 2, "col col col");
+			}
+
+			.dsb153c, .d-sb15-3c, .d--sb15--3c, .d_sb15_3c, .d__sb15__3c  {
+				@include sidebarLeft(15%, 3, "col col col col");
+			}
+
+			.dsb154c, .d-sb15-4c, .d--sb15--4c, .d_sb15_4c, .d__sb15__4c {
+				@include sidebarLeft(15%, 4, "col col col col col");
+			}
+
+			.dsb155c, .d-sb15-5c, .d--sb15--5c, .d_sb15_5c, .d__sb15__5c {
+				@include sidebarLeft(15%, 5, "col col col col col col");
+			}
+
+			.dsb156c, .d-sb15-6c, .d--sb15--6c, .d_sb15_6c, .d__sb15__6c {
+				@include sidebarLeft(15%, 6, "col col col col col col col");
+			}
+
+			.dsb157c, .d-sb15-7c, .d--sb15--7c, .d_sb15_7c, .d__sb15__7c  {
+				@include sidebarLeft(15%, 7, "col col col col col col col col");
+			}
+
+			.dsb158c, .d-sb15-8c, .d--sb15--8c, .d_sb15_8c, .d__sb15__8c  {
+				@include sidebarLeft(15%, 8, "col col col col col col col col col");
+			}
+
+			.dsb159c, .d-sb15-9c, .d--sb15--9c, .d_sb15_9, .d__sb15__9c  {
+				@include sidebarLeft(15%, 9, "col col col col col col col col col col");
+			}
+
+			.dsb1510c, .d-sb15-10c, .d--sb15--10c, .d_sb15_10c, .d__sb15__10c  {
+				@include sidebarLeft(15%, 10, "col col col col col col col col col col col");
+			}
+
+			.dsb1511c, .d-sb15-11c, .d--sb15--11c, .d_sb15_11c, .d__sb15__11c  {
+				@include sidebarLeft(15%, 11, "col col col col col col col col col col col col");
+			}
+
+			.dsb1512c, .d-sb15-12c, .d--sb15--12c, .d_sb15_12c, .d__sb15__12c  {
+				@include sidebarLeft(15%, 12, "col col col col col col col col col col col col col");
+			}
+
+		/* [SIDEBAR LEFT] 20% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+			.dsb201c, .d-sb20-1c, .d--sb20--1c, .d_sb20_1c, .d__sb20__1c {
+				@include sidebarLeft(20%, 1, "col col");
+			}
+
+			.dsb202c, .d-sb20-2c, .d--sb20--2c, .d_sb20_2c, .d__sb20__2c {
+				@include sidebarLeft(20%, 2, "col col col");
+			}
+
+			.dsb203c, .d-sb20-3c, .d--sb20--3c, .d_sb20_3c, .d__sb20__3c  {
+				@include sidebarLeft(20%, 3, "col col col col");
+			}
+
+			.dsb204c, .d-sb20-4c, .d--sb20--4c, .d_sb20_4c, .d__sb20__4c {
+				@include sidebarLeft(20%, 4, "col col col col col");
+			}
+
+			.dsb205c, .d-sb20-5c, .d--sb20--5c, .d_sb20_5c, .d__sb20__5c {
+				@include sidebarLeft(20%, 5, "col col col col col col");
+			}
+
+			.dsb206c, .d-sb20-6c, .d--sb20--6c, .d_sb20_6c, .d__sb20__6c {
+				@include sidebarLeft(20%, 6, "col col col col col col col");
+			}
+
+			.dsb207c, .d-sb20-7c, .d--sb20--7c, .d_sb20_7c, .d__sb20__7c  {
+				@include sidebarLeft(20%, 7, "col col col col col col col col");
+			}
+
+			.dsb208c, .d-sb20-8c, .d--sb20--8c, .d_sb20_8c, .d__sb20__8c  {
+				@include sidebarLeft(20%, 8, "col col col col col col col col col");
+			}
+
+			.dsb209c, .d-sb20-9c, .d--sb20--9c, .d_sb20_9, .d__sb20__9c  {
+				@include sidebarLeft(20%, 9, "col col col col col col col col col col");
+			}
+
+			.dsb2010c, .d-sb20-10c, .d--sb20--10c, .d_sb20_10c, .d__sb20__10c  {
+				@include sidebarLeft(20%, 10, "col col col col col col col col col col col");
+			}
+
+			.dsb2011c, .d-sb20-11c, .d--sb20--11c, .d_sb20_11c, .d__sb20__11c  {
+				@include sidebarLeft(20%, 11, "col col col col col col col col col col col col");
+			}
+
+			.dsb2012c, .d-sb20-12c, .d--sb20--12c, .d_sb20_12c, .d__sb20__12c  {
+				@include sidebarLeft(20%, 12, "col col col col col col col col col col col col col");
+			}
+
+		/* [SIDEBAR LEFT] 25% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+			.dsb251c, .d-sb25-1c, .d--sb25--1c, .d_sb25_1c, .d__sb25__1c {
+				@include sidebarLeft(25%, 1, "col col");
+			}
+
+			.dsb252c, .d-sb25-2c, .d--sb25--2c, .d_sb25_2c, .d__sb25__2c {
+				@include sidebarLeft(25%, 2, "col col col");
+			}
+
+			.dsb253c, .d-sb25-3c, .d--sb25--3c, .d_sb25_3c, .d__sb25__3c  {
+				@include sidebarLeft(25%, 3, "col col col col");
+			}
+
+			.dsb254c, .d-sb25-4c, .d--sb25--4c, .d_sb25_4c, .d__sb25__4c {
+				@include sidebarLeft(25%, 4, "col col col col col");
+			}
+
+			.dsb255c, .d-sb25-5c, .d--sb25--5c, .d_sb25_5c, .d__sb25__5c {
+				@include sidebarLeft(25%, 5, "col col col col col col");
+			}
+
+			.dsb256c, .d-sb25-6c, .d--sb25--6c, .d_sb25_6c, .d__sb25__6c {
+				@include sidebarLeft(25%, 6, "col col col col col col col");
+			}
+
+			.dsb257c, .d-sb25-7c, .d--sb25--7c, .d_sb25_7c, .d__sb25__7c  {
+				@include sidebarLeft(25%, 7, "col col col col col col col col");
+			}
+
+			.dsb258c, .d-sb25-8c, .d--sb25--8c, .d_sb25_8c, .d__sb25__8c  {
+				@include sidebarLeft(25%, 8, "col col col col col col col col col");
+			}
+
+			.dsb259c, .d-sb25-9c, .d--sb25--9c, .d_sb25_9, .d__sb25__9c  {
+				@include sidebarLeft(25%, 9, "col col col col col col col col col col");
+			}
+
+			.dsb2510c, .d-sb25-10c, .d--sb25--10c, .d_sb25_10c, .d__sb25__10c  {
+				@include sidebarLeft(25%, 10, "col col col col col col col col col col col");
+			}
+
+			.dsb2511c, .d-sb25-11c, .d--sb25--11c, .d_sb25_11c, .d__sb25__11c  {
+				@include sidebarLeft(25%, 11, "col col col col col col col col col col col col");
+			}
+
+			.dsb2512c, .d-sb25-12c, .d--sb25--12c, .d_sb25_12c, .d__sb25__12c  {
+				@include sidebarLeft(25%, 12, "col col col col col col col col col col col col col");
+			}
+
+		/* [SIDEBAR LEFT] 30% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+			.dsb301c, .d-sb30-1c, .d--sb30--1c, .d_sb30_1c, .d__sb30__1c {
+				@include sidebarLeft(30%, 1, "col col");
+			}
+
+			.dsb302c, .d-sb30-2c, .d--sb30--2c, .d_sb30_2c, .d__sb30__2c {
+				@include sidebarLeft(30%, 2, "col col col");
+			}
+
+			.dsb303c, .d-sb30-3c, .d--sb30--3c, .d_sb30_3c, .d__sb30__3c  {
+				@include sidebarLeft(30%, 3, "col col col col");
+			}
+
+			.dsb304c, .d-sb30-4c, .d--sb30--4c, .d_sb30_4c, .d__sb30__4c {
+				@include sidebarLeft(30%, 4, "col col col col col");
+			}
+
+			.dsb305c, .d-sb30-5c, .d--sb30--5c, .d_sb30_5c, .d__sb30__5c {
+				@include sidebarLeft(30%, 5, "col col col col col col");
+			}
+
+			.dsb306c, .d-sb30-6c, .d--sb30--6c, .d_sb30_6c, .d__sb30__6c {
+				@include sidebarLeft(30%, 6, "col col col col col col col");
+			}
+
+			.dsb307c, .d-sb30-7c, .d--sb30--7c, .d_sb30_7c, .d__sb30__7c  {
+				@include sidebarLeft(30%, 7, "col col col col col col col col");
+			}
+
+			.dsb308c, .d-sb30-8c, .d--sb30--8c, .d_sb30_8c, .d__sb30__8c  {
+				@include sidebarLeft(30%, 8, "col col col col col col col col col");
+			}
+
+			.dsb309c, .d-sb30-9c, .d--sb30--9c, .d_sb30_9, .d__sb30__9c  {
+				@include sidebarLeft(30%, 9, "col col col col col col col col col col");
+			}
+
+			.dsb3010c, .d-sb30-10c, .d--sb30--10c, .d_sb30_10c, .d__sb30__10c  {
+				@include sidebarLeft(30%, 10, "col col col col col col col col col col col");
+			}
+
+			.dsb3011c, .d-sb30-11c, .d--sb30--11c, .d_sb30_11c, .d__sb30__11c  {
+				@include sidebarLeft(30%, 11, "col col col col col col col col col col col col");
+			}
+
+			.dsb3012c, .d-sb30-12c, .d--sb30--12c, .d_sb30_12c, .d__sb30__12c  {
+				@include sidebarLeft(30%, 12, "col col col col col col col col col col col col col");
+			}
+
+		/* [SIDEBAR LEFT] 35% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+			.dsb351c, .d-sb35-1c, .d--sb35--1c, .d_sb35_1c, .d__sb35__1c {
+				@include sidebarLeft(35%, 1, "col col");
+			}
+
+			.dsb352c, .d-sb35-2c, .d--sb35--2c, .d_sb35_2c, .d__sb35__2c {
+				@include sidebarLeft(35%, 2, "col col col");
+			}
+
+			.dsb353c, .d-sb35-3c, .d--sb35--3c, .d_sb35_3c, .d__sb35__3c  {
+				@include sidebarLeft(35%, 3, "col col col col");
+			}
+
+			.dsb354c, .d-sb35-4c, .d--sb35--4c, .d_sb35_4c, .d__sb35__4c {
+				@include sidebarLeft(35%, 4, "col col col col col");
+			}
+
+			.dsb355c, .d-sb35-5c, .d--sb35--5c, .d_sb35_5c, .d__sb35__5c {
+				@include sidebarLeft(35%, 5, "col col col col col col");
+			}
+
+			.dsb356c, .d-sb35-6c, .d--sb35--6c, .d_sb35_6c, .d__sb35__6c {
+				@include sidebarLeft(35%, 6, "col col col col col col col");
+			}
+
+			.dsb357c, .d-sb35-7c, .d--sb35--7c, .d_sb35_7c, .d__sb35__7c  {
+				@include sidebarLeft(35%, 7, "col col col col col col col col");
+			}
+
+			.dsb358c, .d-sb35-8c, .d--sb35--8c, .d_sb35_8c, .d__sb35__8c  {
+				@include sidebarLeft(35%, 8, "col col col col col col col col col");
+			}
+
+			.dsb359c, .d-sb35-9c, .d--sb35--9c, .d_sb35_9, .d__sb35__9c  {
+				@include sidebarLeft(35%, 9, "col col col col col col col col col col");
+			}
+
+			.dsb3510c, .d-sb35-10c, .d--sb35--10c, .d_sb35_10c, .d__sb35__10c  {
+				@include sidebarLeft(35%, 10, "col col col col col col col col col col col");
+			}
+
+			.dsb3511c, .d-sb35-11c, .d--sb35--11c, .d_sb35_11c, .d__sb35__11c  {
+				@include sidebarLeft(35%, 11, "col col col col col col col col col col col col");
+			}
+
+			.dsb3512c, .d-sb35-12c, .d--sb35--12c, .d_sb35_12c, .d__sb35__12c  {
+				@include sidebarLeft(35%, 12, "col col col col col col col col col col col col col");
+			}
+
+		/* [SIDEBAR LEFT] 40% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+			.dsb401c, .d-sb40-1c, .d--sb40--1c, .d_sb40_1c, .d__sb40__1c {
+				@include sidebarLeft(40%, 1, "col col col");
+			}
+
+			.dsb402c, .d-sb40-2c, .d--sb40--2c, .d_sb40_2c, .d__sb40__2c {
+				@include sidebarLeft(40%, 2, "col col col");
+			}
+
+			.dsb403c, .d-sb40-3c, .d--sb40--3c, .d_sb40_3c, .d__sb40__3c  {
+				@include sidebarLeft(40%, 3, "col col col col");
+			}
+
+			.dsb404c, .d-sb40-4c, .d--sb40--4c, .d_sb40_4c, .d__sb40__4c {
+				@include sidebarLeft(40%, 4, "col col col col col");
+			}
+
+			.dsb405c, .d-sb40-5c, .d--sb40--5c, .d_sb40_5c, .d__sb40__5c {
+				@include sidebarLeft(40%, 5, "col col col col col col");
+			}
+
+			.dsb406c, .d-sb40-6c, .d--sb40--6c, .d_sb40_6c, .d__sb40__6c {
+				@include sidebarLeft(40%, 6, "col col col col col col col");
+			}
+
+			.dsb407c, .d-sb40-7c, .d--sb40--7c, .d_sb40_7c, .d__sb40__7c  {
+				@include sidebarLeft(40%, 7, "col col col col col col col col");
+			}
+
+			.dsb408c, .d-sb40-8c, .d--sb40--8c, .d_sb40_8c, .d__sb40__8c  {
+				@include sidebarLeft(40%, 8, "col col col col col col col col col");
+			}
+
+			.dsb409c, .d-sb40-9c, .d--sb40--9c, .d_sb40_9, .d__sb40__9c  {
+				@include sidebarLeft(40%, 9, "col col col col col col col col col col");
+			}
+
+			.dsb4010c, .d-sb40-10c, .d--sb40--10c, .d_sb40_10c, .d__sb40__10c  {
+				@include sidebarLeft(40%, 10, "col col col col col col col col col col col");
+			}
+
+			.dsb4011c, .d-sb40-11c, .d--sb40--11c, .d_sb40_11c, .d__sb40__11c  {
+				@include sidebarLeft(40%, 11, "col col col col col col col col col col col col");
+			}
+
+			.dsb4012c, .d-sb40-12c, .d--sb40--12c, .d_sb40_12c, .d__sb40__12c  {
+				@include sidebarLeft(40%, 12, "col col col col col col col col col col col col col");
+			}
+
+		/* [SIDEBAR LEFT] 45% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+			.dsb451c, .d-sb45-1c, .d--sb45--1c, .d_sb45_1c, .d__sb45__1c {
+				@include sidebarLeft(45%, 1, "col col");
+			}
+
+			.dsb452c, .d-sb45-2c, .d--sb45--2c, .d_sb45_2c, .d__sb45__2c {
+				@include sidebarLeft(45%, 2, "col col col");
+			}
+
+			.dsb453c, .d-sb45-3c, .d--sb45--3c, .d_sb45_3c, .d__sb45__3c  {
+				@include sidebarLeft(45%, 3, "col col col col");
+			}
+
+			.dsb454c, .d-sb45-4c, .d--sb45--4c, .d_sb45_4c, .d__sb45__4c {
+				@include sidebarLeft(45%, 4, "col col col col col");
+			}
+
+			.dsb455c, .d-sb45-5c, .d--sb45--5c, .d_sb45_5c, .d__sb45__5c {
+				@include sidebarLeft(45%, 5, "col col col col col col");
+			}
+
+			.dsb456c, .d-sb45-6c, .d--sb45--6c, .d_sb45_6c, .d__sb45__6c {
+				@include sidebarLeft(45%, 6, "col col col col col col col");
+			}
+
+			.dsb457c, .d-sb45-7c, .d--sb45--7c, .d_sb45_7c, .d__sb45__7c  {
+				@include sidebarLeft(45%, 7, "col col col col col col col col");
+			}
+
+			.dsb458c, .d-sb45-8c, .d--sb45--8c, .d_sb45_8c, .d__sb45__8c  {
+				@include sidebarLeft(45%, 8, "col col col col col col col col col");
+			}
+
+			.dsb459c, .d-sb45-9c, .d--sb45--9c, .d_sb45_9, .d__sb45__9c  {
+				@include sidebarLeft(45%, 9, "col col col col col col col col col col");
+			}
+
+			.dsb4510c, .d-sb45-10c, .d--sb45--10c, .d_sb45_10c, .d__sb45__10c  {
+				@include sidebarLeft(45%, 10, "col col col col col col col col col col col");
+			}
+
+			.dsb4511c, .d-sb45-11c, .d--sb45--11c, .d_sb45_11c, .d__sb45__11c  {
+				@include sidebarLeft(45%, 11, "col col col col col col col col col col col col");
+			}
+
+			.dsb4512c, .d-sb45-12c, .d--sb45--12c, .d_sb45_12c, .d__sb45__12c  {
+				@include sidebarLeft(45%, 12, "col col col col col col col col col col col col col");
+			}
+
+		/* [SIDEBAR LEFT] 50% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+			.dsb501c, .d-sb50-1c, .d--sb50--1c, .d_sb50_1c, .d__sb50__1c {
+				@include sidebarLeft(50%, 1, "col col");
+			}
+
+			.dsb502c, .d-sb50-2c, .d--sb50--2c, .d_sb50_2c, .d__sb50__2c {
+				@include sidebarLeft(50%, 2, "col col col");
+			}
+
+			.dsb503c, .d-sb50-3c, .d--sb50--3c, .d_sb50_3c, .d__sb50__3c  {
+				@include sidebarLeft(50%, 3, "col col col col");
+			}
+
+			.dsb504c, .d-sb50-4c, .d--sb50--4c, .d_sb50_4c, .d__sb50__4c {
+				@include sidebarLeft(50%, 4, "col col col col col");
+			}
+
+			.dsb505c, .d-sb50-5c, .d--sb50--5c, .d_sb50_5c, .d__sb50__5c {
+				@include sidebarLeft(50%, 5, "col col col col col");
+			}
+
+			.dsb506c, .d-sb50-6c, .d--sb50--6c, .d_sb50_6c, .d__sb50__6c {
+				@include sidebarLeft(50%, 6, "col col col col col col col");
+			}
+
+			.dsb507c, .d-sb50-7c, .d--sb50--7c, .d_sb50_7c, .d__sb50__7c  {
+				@include sidebarLeft(50%, 7, "col col col col col col col col");
+			}
+
+			.dsb508c, .d-sb50-8c, .d--sb50--8c, .d_sb50_8c, .d__sb50__8c  {
+				@include sidebarLeft(50%, 8, "col col col col col col col col col");
+			}
+
+			.dsb509c, .d-sb50-9c, .d--sb50--9c, .d_sb50_9, .d__sb50__9c  {
+				@include sidebarLeft(50%, 9, "col col col col col col col col col col");
+			}
+
+			.dsb5010c, .d-sb50-10c, .d--sb50--10c, .d_sb50_10c, .d__sb50__10c  {
+				@include sidebarLeft(50%, 10, "col col col col col col col col col col col");
+			}
+
+			.dsb5011c, .d-sb50-11c, .d--sb50--11c, .d_sb50_11c, .d__sb50__11c  {
+				@include sidebarLeft(50%, 11, "col col col col col col col col col col col col");
+			}
+
+			.dsb5012c, .d-sb50-12c, .d--sb50--12c, .d_sb50_12c, .d__sb50__12c  {
+				@include sidebarLeft(50%, 12, "col col col col col col col col col col col col col");
+			}
+
+		/* [SIDEBAR RIGHT] 5% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+			.d1csb5, .d-1c-sb5, .d--1c--sb5, .d_1c_sb5, .d__1c__sb5 {
+				@include sidebarRight(5%, 1, "col col");
+			}
+
+			.d2csb5, .d-2c-sb5, .d--2c--sb5, .d_2c_sb5, .d__2c__sb5 {
+				@include sidebarRight(5%, 2, "col col col");
+			}
+
+			.d3csb5, .d-3c-sb5, .d--3c--sb5, .d_3c_sb5, .d__3c__sb5 {
+				@include sidebarRight(5%, 3, "col col col col");
+			}
+
+			.d4csb5, .d-4c-sb5, .d--4c--sb5, .d_4c_sb5, .d__4c__sb5 {
+				@include sidebarRight(5%, 4, "col col col col col");
+			}
+
+			.d5csb5, .d-5c-sb5, .d--5c--sb5, .d_5c_sb5, .d__5c__sb5 {
+				@include sidebarRight(5%, 5, "col col col col col col");
+			}
+
+			.d6csb5, .d-6c-sb5, .d--6c--sb5, .d_6c_sb5, .d__6c__sb5 {
+				@include sidebarRight(5%, 6, "col col col col col col col");
+			}
+
+			.d7csb5, .d-7c-sb5, .d--7c--sb5, .d_7c_sb5, .d__7c__sb5 {
+				@include sidebarRight(5%, 7, "col col col col col col col col");
+			}
+
+			.d8csb5, .d-8c-sb5, .d--8c--sb5, .d_8c_sb5, .d__8c__sb5 {
+				@include sidebarRight(5%, 8, "col col col col col col col col col");
+			}
+
+			.d9csb5, .d-9c-sb5, .d--9c--sb5, .d_9c_sb5, .d__9c__sb5 {
+				@include sidebarRight(5%, 9, "col col col col col col col col col col");
+			}
+
+			.d10csb5, .d-10c-sb5, .d--10c--sb5, .d_10c_sb5, .d__10c__sb5 {
+				@include sidebarRight(5%, 10, "col col col col col col col col col col col");
+			}
+
+			.d11csb5, .d-11c-sb5, .d--11c--sb5, .d_11c_sb5, .d__11c__sb5 {
+				@include sidebarRight(5%, 11, "col col col col col col col col col col col col");
+			}
+
+			.d12csb5, .d-12c-sb5, .d--12c--sb5, .d_12c_sb5, .d__12c__sb5 {
+				@include sidebarRight(5%, 12, "col col col col col col col col col col col col col");
+			}
+
+		/* [SIDEBAR RIGHT] 10% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+			.d1csb10, .d-1c-sb10, .d--1c--sb10, .d_1c_sb10, .d__1c__sb10 {
+				@include sidebarRight(10%, 1, "col col");
+			}
+
+			.d2csb10, .d-2c-sb10, .d--2c--sb10, .d_2c_sb10, .d__2c__sb10 {
+				@include sidebarRight(10%, 2, "col col col");
+			}
+
+			.d3csb10, .d-3c-sb10, .d--3c--sb10, .d_3c_sb10, .d__3c__sb10 {
+				@include sidebarRight(10%, 3, "col col col col");
+			}
+
+			.d4csb10, .d-4c-sb10, .d--4c--sb10, .d_4c_sb10, .d__4c__sb10 {
+				@include sidebarRight(10%, 4, "col col col col col");
+			}
+
+			.d5csb10, .d-5c-sb10, .d--5c--sb10, .d_5c_sb10, .d__5c__sb10 {
+				@include sidebarRight(10%, 5, "col col col col col col");
+			}
+
+			.d6csb10, .d-6c-sb10, .d--6c--sb10, .d_6c_sb10, .d__6c__sb10 {
+				@include sidebarRight(10%, 6, "col col col col col col col");
+			}
+
+			.d7csb10, .d-7c-sb10, .d--7c--sb10, .d_7c_sb10, .d__7c__sb10 {
+				@include sidebarRight(10%, 7, "col col col col col col col col");
+			}
+
+			.d8csb10, .d-8c-sb10, .d--8c--sb10, .d_8c_sb10, .d__8c__sb10 {
+				@include sidebarRight(10%, 8, "col col col col col col col col col");
+			}
+
+			.d9csb10, .d-9c-sb10, .d--9c--sb10, .d_9c_sb10, .d__9c__sb10 {
+				@include sidebarRight(10%, 9, "col col col col col col col col col col");
+			}
+
+			.d10csb10, .d-10c-sb10, .d--10c--sb10, .d_10c_sb10, .d__10c__sb10 {
+				@include sidebarRight(10%, 10, "col col col col col col col col col col col");
+			}
+
+			.d11csb10, .d-11c-sb10, .d--11c--sb10, .d_11c_sb10, .d__11c__sb10 {
+				@include sidebarRight(10%, 11, "col col col col col col col col col col col col");
+			}
+
+			.d12csb10, .d-12c-sb10, .d--12c--sb10, .d_12c_sb10, .d__12c__sb10 {
+				@include sidebarRight(10%, 12, "col col col col col col col col col col col col col");
+			}
+
+		/* [SIDEBAR RIGHT] 15% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+			.d1csb15, .d-1c-sb15, .d--1c--sb15, .d_1c_sb15, .d__1c__sb15 {
+				@include sidebarRight(15%, 1, "col col");
+			}
+
+			.d2csb15, .d-2c-sb15, .d--2c--sb15, .d_2c_sb15, .d__2c__sb15 {
+				@include sidebarRight(15%, 2, "col col col");
+			}
+
+			.d3csb15, .d-3c-sb15, .d--3c--sb15, .d_3c_sb15, .d__3c__sb15 {
+				@include sidebarRight(15%, 3, "col col col col");
+			}
+
+			.d4csb15, .d-4c-sb15, .d--4c--sb15, .d_4c_sb15, .d__4c__sb15 {
+				@include sidebarRight(15%, 4, "col col col col col");
+			}
+
+			.d5csb15, .d-5c-sb15, .d--5c--sb15, .d_5c_sb15, .d__5c__sb15 {
+				@include sidebarRight(15%, 5, "col col col col col col");
+			}
+
+			.d6csb15, .d-6c-sb15, .d--6c--sb15, .d_6c_sb15, .d__6c__sb15 {
+				@include sidebarRight(15%, 6, "col col col col col col col");
+			}
+
+			.d7csb15, .d-7c-sb15, .d--7c--sb15, .d_7c_sb15, .d__7c__sb15 {
+				@include sidebarRight(15%, 7, "col col col col col col col col");
+			}
+
+			.d8csb15, .d-8c-sb15, .d--8c--sb15, .d_8c_sb15, .d__8c__sb15 {
+				@include sidebarRight(15%, 8, "col col col col col col col col col");
+			}
+
+			.d9csb15, .d-9c-sb15, .d--9c--sb15, .d_9c_sb15, .d__9c__sb15 {
+				@include sidebarRight(15%, 9, "col col col col col col col col col col");
+			}
+
+			.d10csb15, .d-10c-sb15, .d--10c--sb15, .d_10c_sb15, .d__10c__sb15 {
+				@include sidebarRight(15%, 10, "col col col col col col col col col col col");
+			}
+
+			.d11csb15, .d-11c-sb15, .d--11c--sb15, .d_11c_sb15, .d__11c__sb15 {
+				@include sidebarRight(15%, 11, "col col col col col col col col col col col col");
+			}
+
+			.d12csb15, .d-12c-sb15, .d--12c--sb15, .d_12c_sb15, .d__12c__sb15 {
+				@include sidebarRight(15%, 12, "col col col col col col col col col col col col col");
+			}
+
+		/* [SIDEBAR RIGHT] 20% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+			.d1csb20, .d-1c-sb20, .d--1c--sb20, .d_1c_sb20, .d__1c__sb20 {
+				@include sidebarRight(20%, 1, "col col");
+			}
+
+			.d2csb20, .d-2c-sb20, .d--2c--sb20, .d_2c_sb20, .d__2c__sb20 {
+				@include sidebarRight(20%, 2, "col col col");
+			}
+
+			.d3csb20, .d-3c-sb20, .d--3c--sb20, .d_3c_sb20, .d__3c__sb20 {
+				@include sidebarRight(20%, 3, "col col col col");
+			}
+
+			.d4csb20, .d-4c-sb20, .d--4c--sb20, .d_4c_sb20, .d__4c__sb20 {
+				@include sidebarRight(20%, 4, "col col col col col");
+			}
+
+			.d5csb20, .d-5c-sb20, .d--5c--sb20, .d_5c_sb20, .d__5c__sb20 {
+				@include sidebarRight(20%, 5, "col col col col col col");
+			}
+
+			.d6csb20, .d-6c-sb20, .d--6c--sb20, .d_6c_sb20, .d__6c__sb20 {
+				@include sidebarRight(20%, 6, "col col col col col col col");
+			}
+
+			.d7csb20, .d-7c-sb20, .d--7c--sb20, .d_7c_sb20, .d__7c__sb20 {
+				@include sidebarRight(20%, 7, "col col col col col col col col");
+			}
+
+			.d8csb20, .d-8c-sb20, .d--8c--sb20, .d_8c_sb20, .d__8c__sb20 {
+				@include sidebarRight(20%, 8, "col col col col col col col col col");
+			}
+
+			.d9csb20, .d-9c-sb20, .d--9c--sb20, .d_9c_sb20, .d__9c__sb20 {
+				@include sidebarRight(20%, 9, "col col col col col col col col col col");
+			}
+
+			.d10csb20, .d-10c-sb20, .d--10c--sb20, .d_10c_sb20, .d__10c__sb20 {
+				@include sidebarRight(20%, 10, "col col col col col col col col col col col");
+			}
+
+			.d11csb20, .d-11c-sb20, .d--11c--sb20, .d_11c_sb20, .d__11c__sb20 {
+				@include sidebarRight(20%, 11, "col col col col col col col col col col col col");
+			}
+
+			.d12csb20, .d-12c-sb20, .d--12c--sb20, .d_12c_sb20, .d__12c__sb20 {
+				@include sidebarRight(20%, 12, "col col col col col col col col col col col col col");
+			}
+
+		/* [SIDEBAR RIGHT] 25% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+			.d1csb25, .d-1c-sb25, .d--1c--sb25, .d_1c_sb25, .d__1c__sb25 {
+				@include sidebarRight(25%, 1, "col col");
+			}
+
+			.d2csb25, .d-2c-sb25, .d--2c--sb25, .d_2c_sb25, .d__2c__sb25 {
+				@include sidebarRight(25%, 2, "col col col");
+			}
+
+			.d3csb25, .d-3c-sb25, .d--3c--sb25, .d_3c_sb25, .d__3c__sb25 {
+				@include sidebarRight(25%, 3, "col col col col");
+			}
+
+			.d4csb25, .d-4c-sb25, .d--4c--sb25, .d_4c_sb25, .d__4c__sb25 {
+				@include sidebarRight(25%, 4, "col col col col col");
+			}
+
+			.d5csb25, .d-5c-sb25, .d--5c--sb25, .d_5c_sb25, .d__5c__sb25 {
+				@include sidebarRight(25%, 5, "col col col col col col");
+			}
+
+			.d6csb25, .d-6c-sb25, .d--6c--sb25, .d_6c_sb25, .d__6c__sb25 {
+				@include sidebarRight(25%, 6, "col col col col col col col");
+			}
+
+			.d7csb25, .d-7c-sb25, .d--7c--sb25, .d_7c_sb25, .d__7c__sb25 {
+				@include sidebarRight(25%, 7, "col col col col col col col col");
+			}
+
+			.d8csb25, .d-8c-sb25, .d--8c--sb25, .d_8c_sb25, .d__8c__sb25 {
+				@include sidebarRight(25%, 8, "col col col col col col col col col");
+			}
+
+			.d9csb25, .d-9c-sb25, .d--9c--sb25, .d_9c_sb25, .d__9c__sb25 {
+				@include sidebarRight(25%, 9, "col col col col col col col col col col");
+			}
+
+			.d10csb25, .d-10c-sb25, .d--10c--sb25, .d_10c_sb25, .d__10c__sb25 {
+				@include sidebarRight(25%, 10, "col col col col col col col col col col col");
+			}
+
+			.d11csb25, .d-11c-sb25, .d--11c--sb25, .d_11c_sb25, .d__11c__sb25 {
+				@include sidebarRight(25%, 11, "col col col col col col col col col col col col");
+			}
+
+			.d12csb25, .d-12c-sb25, .d--12c--sb25, .d_12c_sb25, .d__12c__sb25 {
+				@include sidebarRight(25%, 12, "col col col col col col col col col col col col col");
+			}
+
+		/* [SIDEBAR RIGHT] 30% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+			.d1csb30, .d-1c-sb30, .d--1c--sb30, .d_1c_sb30, .d__1c__sb30 {
+				@include sidebarRight(30%, 1, "col col");
+			}
+
+			.d2csb30, .d-2c-sb30, .d--2c--sb30, .d_2c_sb30, .d__2c__sb30 {
+				@include sidebarRight(30%, 2, "col col col");
+			}
+
+			.d3csb30, .d-3c-sb30, .d--3c--sb30, .d_3c_sb30, .d__3c__sb30 {
+				@include sidebarRight(30%, 3, "col col col col");
+			}
+
+			.d4csb30, .d-4c-sb30, .d--4c--sb30, .d_4c_sb30, .d__4c__sb30 {
+				@include sidebarRight(30%, 4, "col col col col col");
+			}
+
+			.d5csb30, .d-5c-sb30, .d--5c--sb30, .d_5c_sb30, .d__5c__sb30 {
+				@include sidebarRight(30%, 5, "col col col col col col");
+			}
+
+			.d6csb30, .d-6c-sb30, .d--6c--sb30, .d_6c_sb30, .d__6c__sb30 {
+				@include sidebarRight(30%, 6, "col col col col col col col");
+			}
+
+			.d7csb30, .d-7c-sb30, .d--7c--sb30, .d_7c_sb30, .d__7c__sb30 {
+				@include sidebarRight(30%, 7, "col col col col col col col col");
+			}
+
+			.d8csb30, .d-8c-sb30, .d--8c--sb30, .d_8c_sb30, .d__8c__sb30 {
+				@include sidebarRight(30%, 8, "col col col col col col col col col");
+			}
+
+			.d9csb30, .d-9c-sb30, .d--9c--sb30, .d_9c_sb30, .d__9c__sb30 {
+				@include sidebarRight(30%, 9, "col col col col col col col col col col");
+			}
+
+			.d10csb30, .d-10c-sb30, .d--10c--sb30, .d_10c_sb30, .d__10c__sb30 {
+				@include sidebarRight(30%, 10, "col col col col col col col col col col col");
+			}
+
+			.d11csb30, .d-11c-sb30, .d--11c--sb30, .d_11c_sb30, .d__11c__sb30 {
+				@include sidebarRight(30%, 11, "col col col col col col col col col col col col");
+			}
+
+			.d12csb30, .d-12c-sb30, .d--12c--sb30, .d_12c_sb30, .d__12c__sb30 {
+				@include sidebarRight(30%, 12, "col col col col col col col col col col col col col");
+			}
+
+		/* [SIDEBAR RIGHT] / 35% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+			.d1csb35, .d-1c-sb35, .d--1c--sb35, .d_1c_sb35, .d__1c__sb35 {
+				@include sidebarRight(35%, 1, "col col");
+			}
+
+			.d2csb35, .d-2c-sb35, .d--2c--sb35, .d_2c_sb35, .d__2c__sb35 {
+				@include sidebarRight(35%, 2, "col col col");
+			}
+
+			.d3csb35, .d-3c-sb35, .d--3c--sb35, .d_3c_sb35, .d__3c__sb35 {
+				@include sidebarRight(35%, 3, "col col col col");
+			}
+
+			.d4csb35, .d-4c-sb35, .d--4c--sb35, .d_4c_sb35, .d__4c__sb35 {
+				@include sidebarRight(35%, 4, "col col col col col");
+			}
+
+			.d5csb35, .d-5c-sb35, .d--5c--sb35, .d_5c_sb35, .d__5c__sb35 {
+				@include sidebarRight(35%, 5, "col col col col col col");
+			}
+
+			.d6csb35, .d-6c-sb35, .d--6c--sb35, .d_6c_sb35, .d__6c__sb35 {
+				@include sidebarRight(35%, 6, "col col col col col col col");
+			}
+
+			.d7csb35, .d-7c-sb35, .d--7c--sb35, .d_7c_sb35, .d__7c__sb35 {
+				@include sidebarRight(35%, 7, "col col col col col col col col");
+			}
+
+			.d8csb35, .d-8c-sb35, .d--8c--sb35, .d_8c_sb35, .d__8c__sb35 {
+				@include sidebarRight(35%, 8, "col col col col col col col col col");
+			}
+
+			.d9csb35, .d-9c-sb35, .d--9c--sb35, .d_9c_sb35, .d__9c__sb35 {
+				@include sidebarRight(35%, 9, "col col col col col col col col col col");
+			}
+
+			.d10csb35, .d-10c-sb35, .d--10c--sb35, .d_10c_sb35, .d__10c__sb35 {
+				@include sidebarRight(35%, 10, "col col col col col col col col col col col");
+			}
+
+			.d11csb35, .d-11c-sb35, .d--11c--sb35, .d_11c_sb35, .d__11c__sb35 {
+				@include sidebarRight(35%, 11, "col col col col col col col col col col col col");
+			}
+
+			.d12csb35, .d-12c-sb35, .d--12c--sb35, .d_12c_sb35, .d__12c__sb35 {
+				@include sidebarRight(35%, 12, "col col col col col col col col col col col col col");
+			}
+
+		/* [SIDEBAR RIGHT] / 40% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+			.d1csb40, .d-1c-sb40, .d--1c--sb40, .d_1c_sb40, .d__1c__sb40 {
+				@include sidebarRight(40%, 1, "col col");
+			}
+
+			.d2csb40, .d-2c-sb40, .d--2c--sb40, .d_2c_sb40, .d__2c__sb40 {
+				@include sidebarRight(40%, 2, "col col col");
+			}
+
+			.d3csb40, .d-3c-sb40, .d--3c--sb40, .d_3c_sb40, .d__3c__sb40 {
+				@include sidebarRight(40%, 3, "col col col col");
+			}
+
+			.d4csb40, .d-4c-sb40, .d--4c--sb40, .d_4c_sb40, .d__4c__sb40 {
+				@include sidebarRight(40%, 4, "col col col col col");
+			}
+
+			.d5csb40, .d-5c-sb40, .d--5c--sb40, .d_5c_sb40, .d__5c__sb40 {
+				@include sidebarRight(40%, 5, "col col col col col col");
+			}
+
+			.d6csb40, .d-6c-sb40, .d--6c--sb40, .d_6c_sb40, .d__6c__sb40 {
+				@include sidebarRight(40%, 6, "col col col col col col col");
+			}
+
+			.d7csb40, .d-7c-sb40, .d--7c--sb40, .d_7c_sb40, .d__7c__sb40 {
+				@include sidebarRight(40%, 7, "col col col col col col col col");
+			}
+
+			.d8csb40, .d-8c-sb40, .d--8c--sb40, .d_8c_sb40, .d__8c__sb40 {
+				@include sidebarRight(40%, 8, "col col col col col col col col col");
+			}
+
+			.d9csb40, .d-9c-sb40, .d--9c--sb40, .d_9c_sb40, .d__9c__sb40 {
+				@include sidebarRight(40%, 9, "col col col col col col col col col col");
+			}
+
+			.d10csb40, .d-10c-sb40, .d--10c--sb40, .d_10c_sb40, .d__10c__sb40 {
+				@include sidebarRight(40%, 10, "col col col col col col col col col col col");
+			}
+
+			.d11csb40, .d-11c-sb40, .d--11c--sb40, .d_11c_sb40, .d__11c__sb40 {
+				@include sidebarRight(40%, 11, "col col col col col col col col col col col col");
+			}
+
+			.d12csb40, .d-12c-sb40, .d--12c--sb40, .d_12c_sb40, .d__12c__sb40 {
+				@include sidebarRight(40%, 12, "col col col col col col col col col col col col col");
+			}
+
+		/* [SIDEBAR RIGHT] / 45 % Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+			.d1csb45, .d-1c-sb45, .d--1c--sb45, .d_1c_sb45, .d__1c__sb45 {
+		        	@include sidebarRight(45%, 1, "col col");
+		        }
+
+		        .d2csb45, .d-2c-sb45, .d--2c--sb45, .d_2c_sb45, .d__2c__sb45 {
+		        	@include sidebarRight(45%, 2, "col col col");
+		        }
+
+		        .d3csb45, .d-3c-sb45, .d--3c--sb45, .d_3c_sb45, .d__3c__sb45 {
+		        	@include sidebarRight(45%, 3, "col col col col");
+		        }
+
+		        .d4csb45, .d-4c-sb45, .d--4c--sb45, .d_4c_sb45, .d__4c__sb45 {
+		        	@include sidebarRight(45%, 4, "col col col col col");
+		        }
+
+		        .d5csb45, .d-5c-sb45, .d--5c--sb45, .d_5c_sb45, .d__5c__sb45 {
+		        	@include sidebarRight(45%, 5, "col col col col col col");
+		        }
+
+		        .d6csb45, .d-6c-sb45, .d--6c--sb45, .d_6c_sb45, .d__6c__sb45 {
+		        	@include sidebarRight(45%, 6, "col col col col col col col");
+		        }
+
+		        .d7csb45, .d-7c-sb45, .d--7c--sb45, .d_7c_sb45, .d__7c__sb45 {
+		        	@include sidebarRight(45%, 7, "col col col col col col col col");
+		        }
+
+		        .d8csb45, .d-8c-sb45, .d--8c--sb45, .d_8c_sb45, .d__8c__sb45 {
+		        	@include sidebarRight(45%, 8, "col col col col col col col col col");
+		        }
+
+		        .d9csb45, .d-9c-sb45, .d--9c--sb45, .d_9c_sb45, .d__9c__sb45 {
+		        	@include sidebarRight(45%, 9, "col col col col col col col col col col");
+		        }
+
+		        .d10csb45, .d-10c-sb45, .d--10c--sb45, .d_10c_sb45, .d__10c__sb45 {
+		        	@include sidebarRight(45%, 10, "col col col col col col col col col col col");
+		        }
+
+		        .d11csb45, .d-11c-sb45, .d--11c--sb45, .d_11c_sb45, .d__11c__sb45 {
+		        	@include sidebarRight(45%, 11, "col col col col col col col col col col col col");
+		        }
+
+		        .d12csb45, .d-12c-sb45, .d--12c--sb45, .d_12c_sb45, .d__12c__sb45 {
+		        	@include sidebarRight(45%, 12, "col col col col col col col col col col col col col");
+		        }
+
+		/* [SIDEBAR RIGHT] / 50% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+			.d1csb50, .d-1c-sb50, .d--1c--sb50, .d_1c_sb50, .d__1c__sb50 {
+				@include sidebarRight(50%, 1, "col col");
+			}
+
+			.d2csb50, .d-2c-sb50, .d--2c--sb50, .d_2c_sb50, .d__2c__sb50 {
+				@include sidebarRight(50%, 2, "col col col");
+			}
+
+			.d3csb50, .d-3c-sb50, .d--3c--sb50, .d_3c_sb50, .d__3c__sb50 {
+				@include sidebarRight(50%, 3, "col col col col");
+			}
+
+			.d4csb50, .d-4c-sb50, .d--4c--sb50, .d_4c_sb50, .d__4c__sb50 {
+				@include sidebarRight(50%, 4, "col col col col col");
+			}
+
+			.d5csb50, .d-5c-sb50, .d--5c--sb50, .d_5c_sb50, .d__5c__sb50 {
+				@include sidebarRight(50%, 5, "col col col col col col");
+			}
+
+			.d6csb50, .d-6c-sb50, .d--6c--sb50, .d_6c_sb50, .d__6c__sb50 {
+				@include sidebarRight(50%, 6, "col col col col col col col");
+			}
+
+			.d7csb50, .d-7c-sb50, .d--7c--sb50, .d_7c_sb50, .d__7c__sb50 {
+				@include sidebarRight(50%, 7, "col col col col col col col col");
+			}
+
+			.d8csb50, .d-8c-sb50, .d--8c--sb50, .d_8c_sb50, .d__8c__sb50 {
+				@include sidebarRight(50%, 8, "col col col col col col col col col");
+			}
+
+			.d9csb50, .d-9c-sb50, .d--9c--sb50, .d_9c_sb50, .d__9c__sb50 {
+				@include sidebarRight(50%, 9, "col col col col col col col col col col");
+			}
+
+			.d10csb50, .d-10c-sb50, .d--10c--sb50, .d_10c_sb50, .d__10c__sb50 {
+				@include sidebarRight(50%, 10, "col col col col col col col col col col col");
+			}
+
+			.d11csb50, .d-11c-sb50, .d--11c--sb50, .d_11c_sb50, .d__11c__sb50 {
+				@include sidebarRight(50%, 11, "col col col col col col col col col col col col");
+			}
+
+			.d12csb50, .d-12c-sb50, .d--12c--sb50, .d_12c_sb50, .d__12c__sb50 {
+				@include sidebarRight(50%, 12, "col col col col col col col col col col col col col");
+			}
+
+	/* Tablet Layouts */
+
+		@media (max-width: 1300px) {
+
+			/* Purely Column Based Layouts / Up to 12 Columns */
+
+				.t1c, .t-1c, .t--1c, .t_1c, .t__1c {
+					@include grid(1, "col");
+				}
+
+				.t2c, .t-c2, .t--2c, .t_2c, .t__2c {
+					@include grid(2, "col col");
+				}
+
+				.t3c, .t-3c, .t--3c, .t_3c, .t__3c {
+					@include grid(3, "col col col");
+				}
+
+				.t4c, .t-4c, .t--4c, .t_4c, .t__4c {
+					@include grid(4, "col col col col");
+				}
+
+				.t5c, .t-5c, .t--5c, .t_5c, .t__5c {
+					@include grid(5, "col col col col col");
+				}
+
+				.t6c, .t-6c, .t--6c, .t_6c, .t__6c {
+					@include grid(6, "col col col col col col");
+				}
+
+				.t7c, .t-7c, .t--7c, .t_7c, .t__7c {
+					@include grid(7, "col col col col col col col");
+				}
+
+				.t8c, .t-8c, .t--8c, .t_8c, .t__8c {
+					@include grid(8, "col col col col col col col col");
+				}
+
+				.t9c, .t-9c, .t--9c, .t_9c, .t__9c {
+					@include grid(9, "col col col col col col col col col");
+				}
+
+				.t10c, .t-10c, .t--10c, .t_10c, .t__10c {
+					@include grid(10, "col col col col col col col col col col");
+				}
+
+				.t11c, .t-11c, .t--11c, .t_11c, .t__11c {
+					@include grid(11, "col col col col col col col col col col col");
+				}
+
+				.t12c, .t-12c, .t--12c, .t_12c, .t__12c {
+					@include grid(12, "col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR LEFT] 5% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+				.tsb51c, .t-sb5-1c, .t--sb5--1c, .t_sb5_1c, .t__sb5__1c {
+					@include sidebarLeft(5%, 1, "col col");
+				}
+
+				.tsb52c, .t-sb5-2c, .t--sb5--2c, .t_sb5_2c, .t__sb5__2c {
+					@include sidebarLeft(5%, 2, "col col col");
+				}
+
+				.tsb53c, .t-sb5-3c, .t--sb5--3c, .t_sb5_3c, .t__sb5__3c  {
+					@include sidebarLeft(5%, 3, "col col col col");
+				}
+
+				.tsb54c, .t-sb5-4c, .t--sb5--4c, .t_sb5_4c, .t__sb5__4c {
+					@include sidebarLeft(5%, 4, "col col col col col");
+				}
+
+				.tsb55c, .t-sb5-5c, .t--sb5--5c, .t_sb5_5c, .t__sb5__5c {
+					@include sidebarLeft(5%, 5, "col col col col col col");
+				}
+
+				.tsb56c, .t-sb5-6c, .t--sb5--6c, .t_sb5_6c, .t__sb5__6c {
+					@include sidebarLeft(5%, 6, "col col col col col col col");
+				}
+
+				.tsb57c, .t-sb5-7c, .t--sb5--7c, .t_sb5_7c, .t__sb5__7c  {
+					@include sidebarLeft(5%, 7, "col col col col col col col col");
+				}
+
+				.tsb58c, .t-sb5-8c, .t--sb5--8c, .t_sb5_8c, .t__sb5__8c  {
+					@include sidebarLeft(5%, 8, "col col col col col col col col col");
+				}
+
+				.tsb59c, .t-sb5-9c, .t--sb5--9c, .t_sb5_9, .t__sb5__9c  {
+					@include sidebarLeft(5%, 9, "col col col col col col col col col col");
+				}
+
+				.tsb510c, .t-sb5-10c, .t--sb5--10c, .t_sb5_10c, .t__sb5__10c  {
+					@include sidebarLeft(5%, 10, "col col col col col col col col col col col");
+				}
+
+				.tsb511c, .t-sb5-11c, .t--sb5--11c, .t_sb5_11c, .t__sb5__11c  {
+					@include sidebarLeft(5%, 11, "col col col col col col col col col col col col");
+				}
+
+				.tsb512c, .t-sb5-12c, .t--sb5--12c, .t_sb5_12c, .t__sb5__12c  {
+					@include sidebarLeft(5%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR LEFT] 10% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+				.tsb101c, .t-sb10-1c, .t--sb10--1c, .t_sb10_1c, .t__sb10__1c {
+					@include sidebarLeft(10%, 1, "col col");
+				}
+
+				.tsb102c, .t-sb10-2c, .t--sb10--2c, .t_sb10_2c, .t__sb10__2c {
+					@include sidebarLeft(10%, 2, "col col col");
+				}
+
+				.tsb103c, .t-sb10-3c, .t--sb10--3c, .t_sb10_3c, .t__sb10__3c  {
+					@include sidebarLeft(10%, 3, "col col col col");
+				}
+
+				.tsb104c, .t-sb10-4c, .t--sb10--4c, .t_sb10_4c, .t__sb10__4c {
+					@include sidebarLeft(10%, 4, "col col col col col");
+				}
+
+				.tsb105c, .t-sb10-5c, .t--sb10--5c, .t_sb10_5c, .t__sb10__5c {
+					@include sidebarLeft(10%, 5, "col col col col col col");
+				}
+
+				.tsb106c, .t-sb10-6c, .t--sb10--6c, .t_sb10_6c, .t__sb10__6c {
+					@include sidebarLeft(10%, 6, "col col col col col col col");
+				}
+
+				.tsb107c, .t-sb10-7c, .t--sb10--7c, .t_sb10_7c, .t__sb10__7c  {
+					@include sidebarLeft(10%, 7, "col col col col col col col col");
+				}
+
+				.tsb108c, .t-sb10-8c, .t--sb10--8c, .t_sb10_8c, .t__sb10__8c  {
+					@include sidebarLeft(10%, 8, "col col col col col col col col col");
+				}
+
+				.tsb109c, .t-sb10-9c, .t--sb10--9c, .t_sb10_9, .t__sb10__9c  {
+					@include sidebarLeft(10%, 9, "col col col col col col col col col col");
+				}
+
+				.tsb1010c, .t-sb10-10c, .t--sb10--10c, .t_sb10_10c, .t__sb10__10c  {
+					@include sidebarLeft(10%, 10, "col col col col col col col col col col col");
+				}
+
+				.tsb1011c, .t-sb10-11c, .t--sb10--11c, .t_sb10_11c, .t__sb10__11c  {
+					@include sidebarLeft(10%, 11, "col col col col col col col col col col col col");
+				}
+
+				.tsb1012c, .t-sb10-12c, .t--sb10--12c, .t_sb10_12c, .t__sb10__12c  {
+					@include sidebarLeft(10%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR LEFT] 15% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+				.tsb151c, .t-sb15-1c, .t--sb15--1c, .t_sb15_1c, .t__sb15__1c {
+					@include sidebarLeft(15%, 1, "col col");
+				}
+
+				.tsb152c, .t-sb15-2c, .t--sb15--2c, .t_sb15_2c, .t__sb15__2c {
+					@include sidebarLeft(15%, 2, "col col col");
+				}
+
+				.tsb153c, .t-sb15-3c, .t--sb15--3c, .t_sb15_3c, .t__sb15__3c  {
+					@include sidebarLeft(15%, 3, "col col col col");
+				}
+
+				.tsb154c, .t-sb15-4c, .t--sb15--4c, .t_sb15_4c, .t__sb15__4c {
+					@include sidebarLeft(15%, 4, "col col col col col");
+				}
+
+				.tsb155c, .t-sb15-5c, .t--sb15--5c, .t_sb15_5c, .t__sb15__5c {
+					@include sidebarLeft(15%, 5, "col col col col col col");
+				}
+
+				.tsb156c, .t-sb15-6c, .t--sb15--6c, .t_sb15_6c, .t__sb15__6c {
+					@include sidebarLeft(15%, 6, "col col col col col col col");
+				}
+
+				.tsb157c, .t-sb15-7c, .t--sb15--7c, .t_sb15_7c, .t__sb15__7c  {
+					@include sidebarLeft(15%, 7, "col col col col col col col col");
+				}
+
+				.tsb158c, .t-sb15-8c, .t--sb15--8c, .t_sb15_8c, .t__sb15__8c  {
+					@include sidebarLeft(15%, 8, "col col col col col col col col col");
+				}
+
+				.tsb159c, .t-sb15-9c, .t--sb15--9c, .t_sb15_9, .t__sb15__9c  {
+					@include sidebarLeft(15%, 9, "col col col col col col col col col col");
+				}
+
+				.tsb1510c, .t-sb15-10c, .t--sb15--10c, .t_sb15_10c, .t__sb15__10c  {
+					@include sidebarLeft(15%, 10, "col col col col col col col col col col col");
+				}
+
+				.tsb1511c, .t-sb15-11c, .t--sb15--11c, .t_sb15_11c, .t__sb15__11c  {
+					@include sidebarLeft(15%, 11, "col col col col col col col col col col col col");
+				}
+
+				.tsb1512c, .t-sb15-12c, .t--sb15--12c, .t_sb15_12c, .t__sb15__12c  {
+					@include sidebarLeft(15%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR LEFT] 20% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+				.tsb201c, .t-sb20-1c, .t--sb20--1c, .t_sb20_1c, .t__sb20__1c {
+					@include sidebarLeft(20%, 1, "col col");
+				}
+
+				.tsb202c, .t-sb20-2c, .t--sb20--2c, .t_sb20_2c, .t__sb20__2c {
+					@include sidebarLeft(20%, 2, "col col col");
+				}
+
+				.tsb203c, .t-sb20-3c, .t--sb20--3c, .t_sb20_3c, .t__sb20__3c  {
+					@include sidebarLeft(20%, 3, "col col col col");
+				}
+
+				.tsb204c, .t-sb20-4c, .t--sb20--4c, .t_sb20_4c, .t__sb20__4c {
+					@include sidebarLeft(20%, 4, "col col col col col");
+				}
+
+				.tsb205c, .t-sb20-5c, .t--sb20--5c, .t_sb20_5c, .t__sb20__5c {
+					@include sidebarLeft(20%, 5, "col col col col col col");
+				}
+
+				.tsb206c, .t-sb20-6c, .t--sb20--6c, .t_sb20_6c, .t__sb20__6c {
+					@include sidebarLeft(20%, 6, "col col col col col col col");
+				}
+
+				.tsb207c, .t-sb20-7c, .t--sb20--7c, .t_sb20_7c, .t__sb20__7c  {
+					@include sidebarLeft(20%, 7, "col col col col col col col col");
+				}
+
+				.tsb208c, .t-sb20-8c, .t--sb20--8c, .t_sb20_8c, .t__sb20__8c  {
+					@include sidebarLeft(20%, 8, "col col col col col col col col col");
+				}
+
+				.tsb209c, .t-sb20-9c, .t--sb20--9c, .t_sb20_9, .t__sb20__9c  {
+					@include sidebarLeft(20%, 9, "col col col col col col col col col col");
+				}
+
+				.tsb2010c, .t-sb20-10c, .t--sb20--10c, .t_sb20_10c, .t__sb20__10c  {
+					@include sidebarLeft(20%, 10, "col col col col col col col col col col col");
+				}
+
+				.tsb2011c, .t-sb20-11c, .t--sb20--11c, .t_sb20_11c, .t__sb20__11c  {
+					@include sidebarLeft(20%, 11, "col col col col col col col col col col col col");
+				}
+
+				.tsb2012c, .t-sb20-12c, .t--sb20--12c, .t_sb20_12c, .t__sb20__12c  {
+					@include sidebarLeft(20%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR LEFT] 25% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+				.tsb251c, .t-sb25-1c, .t--sb25--1c, .t_sb25_1c, .t__sb25__1c {
+					@include sidebarLeft(25%, 1, "col col");
+				}
+
+				.tsb252c, .t-sb25-2c, .t--sb25--2c, .t_sb25_2c, .t__sb25__2c {
+					@include sidebarLeft(25%, 2, "col col col");
+				}
+
+				.tsb253c, .t-sb25-3c, .t--sb25--3c, .t_sb25_3c, .t__sb25__3c  {
+					@include sidebarLeft(25%, 3, "col col col col");
+				}
+
+				.tsb254c, .t-sb25-4c, .t--sb25--4c, .t_sb25_4c, .t__sb25__4c {
+					@include sidebarLeft(25%, 4, "col col col col col");
+				}
+
+				.tsb255c, .t-sb25-5c, .t--sb25--5c, .t_sb25_5c, .t__sb25__5c {
+					@include sidebarLeft(25%, 5, "col col col col col col");
+				}
+
+				.tsb256c, .t-sb25-6c, .t--sb25--6c, .t_sb25_6c, .t__sb25__6c {
+					@include sidebarLeft(25%, 6, "col col col col col col col");
+				}
+
+				.tsb257c, .t-sb25-7c, .t--sb25--7c, .t_sb25_7c, .t__sb25__7c  {
+					@include sidebarLeft(25%, 7, "col col col col col col col col");
+				}
+
+				.tsb258c, .t-sb25-8c, .t--sb25--8c, .t_sb25_8c, .t__sb25__8c  {
+					@include sidebarLeft(25%, 8, "col col col col col col col col col");
+				}
+
+				.tsb259c, .t-sb25-9c, .t--sb25--9c, .t_sb25_9, .t__sb25__9c  {
+					@include sidebarLeft(25%, 9, "col col col col col col col col col col");
+				}
+
+				.tsb2510c, .t-sb25-10c, .t--sb25--10c, .t_sb25_10c, .t__sb25__10c  {
+					@include sidebarLeft(25%, 10, "col col col col col col col col col col col");
+				}
+
+				.tsb2511c, .t-sb25-11c, .t--sb25--11c, .t_sb25_11c, .t__sb25__11c  {
+					@include sidebarLeft(25%, 11, "col col col col col col col col col col col col");
+				}
+
+				.tsb2512c, .t-sb25-12c, .t--sb25--12c, .t_sb25_12c, .t__sb25__12c  {
+					@include sidebarLeft(25%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR LEFT] 30% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+				.tsb301c, .t-sb30-1c, .t--sb30--1c, .t_sb30_1c, .t__sb30__1c {
+					@include sidebarLeft(30%, 1, "col col");
+				}
+
+				.tsb302c, .t-sb30-2c, .t--sb30--2c, .t_sb30_2c, .t__sb30__2c {
+					@include sidebarLeft(30%, 2, "col col col");
+				}
+
+				.tsb303c, .t-sb30-3c, .t--sb30--3c, .t_sb30_3c, .t__sb30__3c  {
+					@include sidebarLeft(30%, 3, "col col col col");
+				}
+
+				.tsb304c, .t-sb30-4c, .t--sb30--4c, .t_sb30_4c, .t__sb30__4c {
+					@include sidebarLeft(30%, 4, "col col col col col");
+				}
+
+				.tsb305c, .t-sb30-5c, .t--sb30--5c, .t_sb30_5c, .t__sb30__5c {
+					@include sidebarLeft(30%, 5, "col col col col col col");
+				}
+
+				.tsb306c, .t-sb30-6c, .t--sb30--6c, .t_sb30_6c, .t__sb30__6c {
+					@include sidebarLeft(30%, 6, "col col col col col col col");
+				}
+
+				.tsb307c, .t-sb30-7c, .t--sb30--7c, .t_sb30_7c, .t__sb30__7c  {
+					@include sidebarLeft(30%, 7, "col col col col col col col col");
+				}
+
+				.tsb308c, .t-sb30-8c, .t--sb30--8c, .t_sb30_8c, .t__sb30__8c  {
+					@include sidebarLeft(30%, 8, "col col col col col col col col col");
+				}
+
+				.tsb309c, .t-sb30-9c, .t--sb30--9c, .t_sb30_9, .t__sb30__9c  {
+					@include sidebarLeft(30%, 9, "col col col col col col col col col col");
+				}
+
+				.tsb3010c, .t-sb30-10c, .t--sb30--10c, .t_sb30_10c, .t__sb30__10c  {
+					@include sidebarLeft(30%, 10, "col col col col col col col col col col col");
+				}
+
+				.tsb3011c, .t-sb30-11c, .t--sb30--11c, .t_sb30_11c, .t__sb30__11c  {
+					@include sidebarLeft(30%, 11, "col col col col col col col col col col col col");
+				}
+
+				.tsb3012c, .t-sb30-12c, .t--sb30--12c, .t_sb30_12c, .t__sb30__12c  {
+					@include sidebarLeft(30%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR LEFT] 35% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+				.tsb351c, .t-sb35-1c, .t--sb35--1c, .t_sb35_1c, .t__sb35__1c {
+					@include sidebarLeft(35%, 1, "col col");
+				}
+
+				.tsb352c, .t-sb35-2c, .t--sb35--2c, .t_sb35_2c, .t__sb35__2c {
+					@include sidebarLeft(35%, 2, "col col col");
+				}
+
+				.tsb353c, .t-sb35-3c, .t--sb35--3c, .t_sb35_3c, .t__sb35__3c  {
+					@include sidebarLeft(35%, 3, "col col col col");
+				}
+
+				.tsb354c, .t-sb35-4c, .t--sb35--4c, .t_sb35_4c, .t__sb35__4c {
+					@include sidebarLeft(35%, 4, "col col col col col");
+				}
+
+				.tsb355c, .t-sb35-5c, .t--sb35--5c, .t_sb35_5c, .t__sb35__5c {
+					@include sidebarLeft(35%, 5, "col col col col col col");
+				}
+
+				.tsb356c, .t-sb35-6c, .t--sb35--6c, .t_sb35_6c, .t__sb35__6c {
+					@include sidebarLeft(35%, 6, "col col col col col col col");
+				}
+
+				.tsb357c, .t-sb35-7c, .t--sb35--7c, .t_sb35_7c, .t__sb35__7c  {
+					@include sidebarLeft(35%, 7, "col col col col col col col col");
+				}
+
+				.tsb358c, .t-sb35-8c, .t--sb35--8c, .t_sb35_8c, .t__sb35__8c  {
+					@include sidebarLeft(35%, 8, "col col col col col col col col col");
+				}
+
+				.tsb359c, .t-sb35-9c, .t--sb35--9c, .t_sb35_9, .t__sb35__9c  {
+					@include sidebarLeft(35%, 9, "col col col col col col col col col col");
+				}
+
+				.tsb3510c, .t-sb35-10c, .t--sb35--10c, .t_sb35_10c, .t__sb35__10c  {
+					@include sidebarLeft(35%, 10, "col col col col col col col col col col col");
+				}
+
+				.tsb3511c, .t-sb35-11c, .t--sb35--11c, .t_sb35_11c, .t__sb35__11c  {
+					@include sidebarLeft(35%, 11, "col col col col col col col col col col col col");
+				}
+
+				.tsb3512c, .t-sb35-12c, .t--sb35--12c, .t_sb35_12c, .t__sb35__12c  {
+					@include sidebarLeft(35%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR LEFT] 40% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+				.tsb401c, .t-sb40-1c, .t--sb40--1c, .t_sb40_1c, .t__sb40__1c {
+					@include sidebarLeft(40%, 1, "col col col");
+				}
+
+				.tsb402c, .t-sb40-2c, .t--sb40--2c, .t_sb40_2c, .t__sb40__2c {
+					@include sidebarLeft(40%, 2, "col col col");
+				}
+
+				.tsb403c, .t-sb40-3c, .t--sb40--3c, .t_sb40_3c, .t__sb40__3c  {
+					@include sidebarLeft(40%, 3, "col col col col");
+				}
+
+				.tsb404c, .t-sb40-4c, .t--sb40--4c, .t_sb40_4c, .t__sb40__4c {
+					@include sidebarLeft(40%, 4, "col col col col col");
+				}
+
+				.tsb405c, .t-sb40-5c, .t--sb40--5c, .t_sb40_5c, .t__sb40__5c {
+					@include sidebarLeft(40%, 5, "col col col col col col");
+				}
+
+				.tsb406c, .t-sb40-6c, .t--sb40--6c, .t_sb40_6c, .t__sb40__6c {
+					@include sidebarLeft(40%, 6, "col col col col col col col");
+				}
+
+				.tsb407c, .t-sb40-7c, .t--sb40--7c, .t_sb40_7c, .t__sb40__7c  {
+					@include sidebarLeft(40%, 7, "col col col col col col col col");
+				}
+
+				.tsb408c, .t-sb40-8c, .t--sb40--8c, .t_sb40_8c, .t__sb40__8c  {
+					@include sidebarLeft(40%, 8, "col col col col col col col col col");
+				}
+
+				.tsb409c, .t-sb40-9c, .t--sb40--9c, .t_sb40_9, .t__sb40__9c  {
+					@include sidebarLeft(40%, 9, "col col col col col col col col col col");
+				}
+
+				.tsb4010c, .t-sb40-10c, .t--sb40--10c, .t_sb40_10c, .t__sb40__10c  {
+					@include sidebarLeft(40%, 10, "col col col col col col col col col col col");
+				}
+
+				.tsb4011c, .t-sb40-11c, .t--sb40--11c, .t_sb40_11c, .t__sb40__11c  {
+					@include sidebarLeft(40%, 11, "col col col col col col col col col col col col");
+				}
+
+				.tsb4012c, .t-sb40-12c, .t--sb40--12c, .t_sb40_12c, .t__sb40__12c  {
+					@include sidebarLeft(40%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR LEFT] 45% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+				.tsb451c, .t-sb45-1c, .t--sb45--1c, .t_sb45_1c, .t__sb45__1c {
+					@include sidebarLeft(45%, 1, "col col");
+				}
+
+				.tsb452c, .t-sb45-2c, .t--sb45--2c, .t_sb45_2c, .t__sb45__2c {
+					@include sidebarLeft(45%, 2, "col col col");
+				}
+
+				.tsb453c, .t-sb45-3c, .t--sb45--3c, .t_sb45_3c, .t__sb45__3c  {
+					@include sidebarLeft(45%, 3, "col col col col");
+				}
+
+				.tsb454c, .t-sb45-4c, .t--sb45--4c, .t_sb45_4c, .t__sb45__4c {
+					@include sidebarLeft(45%, 4, "col col col col col");
+				}
+
+				.tsb455c, .t-sb45-5c, .t--sb45--5c, .t_sb45_5c, .t__sb45__5c {
+					@include sidebarLeft(45%, 5, "col col col col col col");
+				}
+
+				.tsb456c, .t-sb45-6c, .t--sb45--6c, .t_sb45_6c, .t__sb45__6c {
+					@include sidebarLeft(45%, 6, "col col col col col col col");
+				}
+
+				.tsb457c, .t-sb45-7c, .t--sb45--7c, .t_sb45_7c, .t__sb45__7c  {
+					@include sidebarLeft(45%, 7, "col col col col col col col col");
+				}
+
+				.tsb458c, .t-sb45-8c, .t--sb45--8c, .t_sb45_8c, .t__sb45__8c  {
+					@include sidebarLeft(45%, 8, "col col col col col col col col col");
+				}
+
+				.tsb459c, .t-sb45-9c, .t--sb45--9c, .t_sb45_9, .t__sb45__9c  {
+					@include sidebarLeft(45%, 9, "col col col col col col col col col col");
+				}
+
+				.tsb4510c, .t-sb45-10c, .t--sb45--10c, .t_sb45_10c, .t__sb45__10c  {
+					@include sidebarLeft(45%, 10, "col col col col col col col col col col col");
+				}
+
+				.tsb4511c, .t-sb45-11c, .t--sb45--11c, .t_sb45_11c, .t__sb45__11c  {
+					@include sidebarLeft(45%, 11, "col col col col col col col col col col col col");
+				}
+
+				.tsb4512c, .t-sb45-12c, .t--sb45--12c, .t_sb45_12c, .t__sb45__12c  {
+					@include sidebarLeft(45%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR LEFT] 50% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+				.tsb501c, .t-sb50-1c, .t--sb50--1c, .t_sb50_1c, .t__sb50__1c {
+					@include sidebarLeft(50%, 1, "col col");
+				}
+
+				.tsb502c, .t-sb50-2c, .t--sb50--2c, .t_sb50_2c, .t__sb50__2c {
+					@include sidebarLeft(50%, 2, "col col col");
+				}
+
+				.tsb503c, .t-sb50-3c, .t--sb50--3c, .t_sb50_3c, .t__sb50__3c  {
+					@include sidebarLeft(50%, 3, "col col col col");
+				}
+
+				.tsb504c, .t-sb50-4c, .t--sb50--4c, .t_sb50_4c, .t__sb50__4c {
+					@include sidebarLeft(50%, 4, "col col col col col");
+				}
+
+				.tsb505c, .t-sb50-5c, .t--sb50--5c, .t_sb50_5c, .t__sb50__5c {
+					@include sidebarLeft(50%, 5, "col col col col col");
+				}
+
+				.tsb506c, .t-sb50-6c, .t--sb50--6c, .t_sb50_6c, .t__sb50__6c {
+					@include sidebarLeft(50%, 6, "col col col col col col col");
+				}
+
+				.tsb507c, .t-sb50-7c, .t--sb50--7c, .t_sb50_7c, .t__sb50__7c  {
+					@include sidebarLeft(50%, 7, "col col col col col col col col");
+				}
+
+				.tsb508c, .t-sb50-8c, .t--sb50--8c, .t_sb50_8c, .t__sb50__8c  {
+					@include sidebarLeft(50%, 8, "col col col col col col col col col");
+				}
+
+				.tsb509c, .t-sb50-9c, .t--sb50--9c, .t_sb50_9, .t__sb50__9c  {
+					@include sidebarLeft(50%, 9, "col col col col col col col col col col");
+				}
+
+				.tsb5010c, .t-sb50-10c, .t--sb50--10c, .t_sb50_10c, .t__sb50__10c  {
+					@include sidebarLeft(50%, 10, "col col col col col col col col col col col");
+				}
+
+				.tsb5011c, .t-sb50-11c, .t--sb50--11c, .t_sb50_11c, .t__sb50__11c  {
+					@include sidebarLeft(50%, 11, "col col col col col col col col col col col col");
+				}
+
+				.tsb5012c, .t-sb50-12c, .t--sb50--12c, .t_sb50_12c, .t__sb50__12c  {
+					@include sidebarLeft(50%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR RIGHT] 5% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+				.t1csb5, .t-1c-sb5, .t--1c--sb5, .t_1c_sb5, .t__1c__sb5 {
+					@include sidebarRight(5%, 1, "col col");
+				}
+
+				.t2csb5, .t-2c-sb5, .t--2c--sb5, .t_2c_sb5, .t__2c__sb5 {
+					@include sidebarRight(5%, 2, "col col col");
+				}
+
+				.t3csb5, .t-3c-sb5, .t--3c--sb5, .t_3c_sb5, .t__3c__sb5 {
+					@include sidebarRight(5%, 3, "col col col col");
+				}
+
+				.t4csb5, .t-4c-sb5, .t--4c--sb5, .t_4c_sb5, .t__4c__sb5 {
+					@include sidebarRight(5%, 4, "col col col col col");
+				}
+
+				.t5csb5, .t-5c-sb5, .t--5c--sb5, .t_5c_sb5, .t__5c__sb5 {
+					@include sidebarRight(5%, 5, "col col col col col col");
+				}
+
+				.t6csb5, .t-6c-sb5, .t--6c--sb5, .t_6c_sb5, .t__6c__sb5 {
+					@include sidebarRight(5%, 6, "col col col col col col col");
+				}
+
+				.t7csb5, .t-7c-sb5, .t--7c--sb5, .t_7c_sb5, .t__7c__sb5 {
+					@include sidebarRight(5%, 7, "col col col col col col col col");
+				}
+
+				.t8csb5, .t-8c-sb5, .t--8c--sb5, .t_8c_sb5, .t__8c__sb5 {
+					@include sidebarRight(5%, 8, "col col col col col col col col col");
+				}
+
+				.t9csb5, .t-9c-sb5, .t--9c--sb5, .t_9c_sb5, .t__9c__sb5 {
+					@include sidebarRight(5%, 9, "col col col col col col col col col col");
+				}
+
+				.t10csb5, .t-10c-sb5, .t--10c--sb5, .t_10c_sb5, .t__10c__sb5 {
+					@include sidebarRight(5%, 10, "col col col col col col col col col col col");
+				}
+
+				.t11csb5, .t-11c-sb5, .t--11c--sb5, .t_11c_sb5, .t__11c__sb5 {
+					@include sidebarRight(5%, 11, "col col col col col col col col col col col col");
+				}
+
+				.t12csb5, .t-12c-sb5, .t--12c--sb5, .t_12c_sb5, .t__12c__sb5 {
+					@include sidebarRight(5%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR RIGHT] 10% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+				.t1csb10, .t-1c-sb10, .t--1c--sb10, .t_1c_sb10, .t__1c__sb10 {
+					@include sidebarRight(10%, 1, "col col");
+				}
+
+				.t2csb10, .t-2c-sb10, .t--2c--sb10, .t_2c_sb10, .t__2c__sb10 {
+					@include sidebarRight(10%, 2, "col col col");
+				}
+
+				.t3csb10, .t-3c-sb10, .t--3c--sb10, .t_3c_sb10, .t__3c__sb10 {
+					@include sidebarRight(10%, 3, "col col col col");
+				}
+
+				.t4csb10, .t-4c-sb10, .t--4c--sb10, .t_4c_sb10, .t__4c__sb10 {
+					@include sidebarRight(10%, 4, "col col col col col");
+				}
+
+				.t5csb10, .t-5c-sb10, .t--5c--sb10, .t_5c_sb10, .t__5c__sb10 {
+					@include sidebarRight(10%, 5, "col col col col col col");
+				}
+
+				.t6csb10, .t-6c-sb10, .t--6c--sb10, .t_6c_sb10, .t__6c__sb10 {
+					@include sidebarRight(10%, 6, "col col col col col col col");
+				}
+
+				.t7csb10, .t-7c-sb10, .t--7c--sb10, .t_7c_sb10, .t__7c__sb10 {
+					@include sidebarRight(10%, 7, "col col col col col col col col");
+				}
+
+				.t8csb10, .t-8c-sb10, .t--8c--sb10, .t_8c_sb10, .t__8c__sb10 {
+					@include sidebarRight(10%, 8, "col col col col col col col col col");
+				}
+
+				.t9csb10, .t-9c-sb10, .t--9c--sb10, .t_9c_sb10, .t__9c__sb10 {
+					@include sidebarRight(10%, 9, "col col col col col col col col col col");
+				}
+
+				.t10csb10, .t-10c-sb10, .t--10c--sb10, .t_10c_sb10, .t__10c__sb10 {
+					@include sidebarRight(10%, 10, "col col col col col col col col col col col");
+				}
+
+				.t11csb10, .t-11c-sb10, .t--11c--sb10, .t_11c_sb10, .t__11c__sb10 {
+					@include sidebarRight(10%, 11, "col col col col col col col col col col col col");
+				}
+
+				.t12csb10, .t-12c-sb10, .t--12c--sb10, .t_12c_sb10, .t__12c__sb10 {
+					@include sidebarRight(10%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR RIGHT] 15% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+				.t1csb15, .t-1c-sb15, .t--1c--sb15, .t_1c_sb15, .t__1c__sb15 {
+					@include sidebarRight(15%, 1, "col col");
+				}
+
+				.t2csb15, .t-2c-sb15, .t--2c--sb15, .t_2c_sb15, .t__2c__sb15 {
+					@include sidebarRight(15%, 2, "col col col");
+				}
+
+				.t3csb15, .t-3c-sb15, .t--3c--sb15, .t_3c_sb15, .t__3c__sb15 {
+					@include sidebarRight(15%, 3, "col col col col");
+				}
+
+				.t4csb15, .t-4c-sb15, .t--4c--sb15, .t_4c_sb15, .t__4c__sb15 {
+					@include sidebarRight(15%, 4, "col col col col col");
+				}
+
+				.t5csb15, .t-5c-sb15, .t--5c--sb15, .t_5c_sb15, .t__5c__sb15 {
+					@include sidebarRight(15%, 5, "col col col col col col");
+				}
+
+				.t6csb15, .t-6c-sb15, .t--6c--sb15, .t_6c_sb15, .t__6c__sb15 {
+					@include sidebarRight(15%, 6, "col col col col col col col");
+				}
+
+				.t7csb15, .t-7c-sb15, .t--7c--sb15, .t_7c_sb15, .t__7c__sb15 {
+					@include sidebarRight(15%, 7, "col col col col col col col col");
+				}
+
+				.t8csb15, .t-8c-sb15, .t--8c--sb15, .t_8c_sb15, .t__8c__sb15 {
+					@include sidebarRight(15%, 8, "col col col col col col col col col");
+				}
+
+				.t9csb15, .t-9c-sb15, .t--9c--sb15, .t_9c_sb15, .t__9c__sb15 {
+					@include sidebarRight(15%, 9, "col col col col col col col col col col");
+				}
+
+				.t10csb15, .t-10c-sb15, .t--10c--sb15, .t_10c_sb15, .t__10c__sb15 {
+					@include sidebarRight(15%, 10, "col col col col col col col col col col col");
+				}
+
+				.t11csb15, .t-11c-sb15, .t--11c--sb15, .t_11c_sb15, .t__11c__sb15 {
+					@include sidebarRight(15%, 11, "col col col col col col col col col col col col");
+				}
+
+				.t12csb15, .t-12c-sb15, .t--12c--sb15, .t_12c_sb15, .t__12c__sb15 {
+					@include sidebarRight(15%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR RIGHT] 20% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+				.t1csb20, .t-1c-sb20, .t--1c--sb20, .t_1c_sb20, .t__1c__sb20 {
+					@include sidebarRight(20%, 1, "col col");
+				}
+
+				.t2csb20, .t-2c-sb20, .t--2c--sb20, .t_2c_sb20, .t__2c__sb20 {
+					@include sidebarRight(20%, 2, "col col col");
+				}
+
+				.t3csb20, .t-3c-sb20, .t--3c--sb20, .t_3c_sb20, .t__3c__sb20 {
+					@include sidebarRight(20%, 3, "col col col col");
+				}
+
+				.t4csb20, .t-4c-sb20, .t--4c--sb20, .t_4c_sb20, .t__4c__sb20 {
+					@include sidebarRight(20%, 4, "col col col col col");
+				}
+
+				.t5csb20, .t-5c-sb20, .t--5c--sb20, .t_5c_sb20, .t__5c__sb20 {
+					@include sidebarRight(20%, 5, "col col col col col col");
+				}
+
+				.t6csb20, .t-6c-sb20, .t--6c--sb20, .t_6c_sb20, .t__6c__sb20 {
+					@include sidebarRight(20%, 6, "col col col col col col col");
+				}
+
+				.t7csb20, .t-7c-sb20, .t--7c--sb20, .t_7c_sb20, .t__7c__sb20 {
+					@include sidebarRight(20%, 7, "col col col col col col col col");
+				}
+
+				.t8csb20, .t-8c-sb20, .t--8c--sb20, .t_8c_sb20, .t__8c__sb20 {
+					@include sidebarRight(20%, 8, "col col col col col col col col col");
+				}
+
+				.t9csb20, .t-9c-sb20, .t--9c--sb20, .t_9c_sb20, .t__9c__sb20 {
+					@include sidebarRight(20%, 9, "col col col col col col col col col col");
+				}
+
+				.t10csb20, .t-10c-sb20, .t--10c--sb20, .t_10c_sb20, .t__10c__sb20 {
+					@include sidebarRight(20%, 10, "col col col col col col col col col col col");
+				}
+
+				.t11csb20, .t-11c-sb20, .t--11c--sb20, .t_11c_sb20, .t__11c__sb20 {
+					@include sidebarRight(20%, 11, "col col col col col col col col col col col col");
+				}
+
+				.t12csb20, .t-12c-sb20, .t--12c--sb20, .t_12c_sb20, .t__12c__sb20 {
+					@include sidebarRight(20%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR RIGHT] 25% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+				.t1csb25, .t-1c-sb25, .t--1c--sb25, .t_1c_sb25, .t__1c__sb25 {
+					@include sidebarRight(25%, 1, "col col");
+				}
+
+				.t2csb25, .t-2c-sb25, .t--2c--sb25, .t_2c_sb25, .t__2c__sb25 {
+					@include sidebarRight(25%, 2, "col col col");
+				}
+
+				.t3csb25, .t-3c-sb25, .t--3c--sb25, .t_3c_sb25, .t__3c__sb25 {
+					@include sidebarRight(25%, 3, "col col col col");
+				}
+
+				.t4csb25, .t-4c-sb25, .t--4c--sb25, .t_4c_sb25, .t__4c__sb25 {
+					@include sidebarRight(25%, 4, "col col col col col");
+				}
+
+				.t5csb25, .t-5c-sb25, .t--5c--sb25, .t_5c_sb25, .t__5c__sb25 {
+					@include sidebarRight(25%, 5, "col col col col col col");
+				}
+
+				.t6csb25, .t-6c-sb25, .t--6c--sb25, .t_6c_sb25, .t__6c__sb25 {
+					@include sidebarRight(25%, 6, "col col col col col col col");
+				}
+
+				.t7csb25, .t-7c-sb25, .t--7c--sb25, .t_7c_sb25, .t__7c__sb25 {
+					@include sidebarRight(25%, 7, "col col col col col col col col");
+				}
+
+				.t8csb25, .t-8c-sb25, .t--8c--sb25, .t_8c_sb25, .t__8c__sb25 {
+					@include sidebarRight(25%, 8, "col col col col col col col col col");
+				}
+
+				.t9csb25, .t-9c-sb25, .t--9c--sb25, .t_9c_sb25, .t__9c__sb25 {
+					@include sidebarRight(25%, 9, "col col col col col col col col col col");
+				}
+
+				.t10csb25, .t-10c-sb25, .t--10c--sb25, .t_10c_sb25, .t__10c__sb25 {
+					@include sidebarRight(25%, 10, "col col col col col col col col col col col");
+				}
+
+				.t11csb25, .t-11c-sb25, .t--11c--sb25, .t_11c_sb25, .t__11c__sb25 {
+					@include sidebarRight(25%, 11, "col col col col col col col col col col col col");
+				}
+
+				.t12csb25, .t-12c-sb25, .t--12c--sb25, .t_12c_sb25, .t__12c__sb25 {
+					@include sidebarRight(25%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR RIGHT] 30% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+				.t1csb30, .t-1c-sb30, .t--1c--sb30, .t_1c_sb30, .t__1c__sb30 {
+					@include sidebarRight(30%, 1, "col col");
+				}
+
+				.t2csb30, .t-2c-sb30, .t--2c--sb30, .t_2c_sb30, .t__2c__sb30 {
+					@include sidebarRight(30%, 2, "col col col");
+				}
+
+				.t3csb30, .t-3c-sb30, .t--3c--sb30, .t_3c_sb30, .t__3c__sb30 {
+					@include sidebarRight(30%, 3, "col col col col");
+				}
+
+				.t4csb30, .t-4c-sb30, .t--4c--sb30, .t_4c_sb30, .t__4c__sb30 {
+					@include sidebarRight(30%, 4, "col col col col col");
+				}
+
+				.t5csb30, .t-5c-sb30, .t--5c--sb30, .t_5c_sb30, .t__5c__sb30 {
+					@include sidebarRight(30%, 5, "col col col col col col");
+				}
+
+				.t6csb30, .t-6c-sb30, .t--6c--sb30, .t_6c_sb30, .t__6c__sb30 {
+					@include sidebarRight(30%, 6, "col col col col col col col");
+				}
+
+				.t7csb30, .t-7c-sb30, .t--7c--sb30, .t_7c_sb30, .t__7c__sb30 {
+					@include sidebarRight(30%, 7, "col col col col col col col col");
+				}
+
+				.t8csb30, .t-8c-sb30, .t--8c--sb30, .t_8c_sb30, .t__8c__sb30 {
+					@include sidebarRight(30%, 8, "col col col col col col col col col");
+				}
+
+				.t9csb30, .t-9c-sb30, .t--9c--sb30, .t_9c_sb30, .t__9c__sb30 {
+					@include sidebarRight(30%, 9, "col col col col col col col col col col");
+				}
+
+				.t10csb30, .t-10c-sb30, .t--10c--sb30, .t_10c_sb30, .t__10c__sb30 {
+					@include sidebarRight(30%, 10, "col col col col col col col col col col col");
+				}
+
+				.t11csb30, .t-11c-sb30, .t--11c--sb30, .t_11c_sb30, .t__11c__sb30 {
+					@include sidebarRight(30%, 11, "col col col col col col col col col col col col");
+				}
+
+				.t12csb30, .t-12c-sb30, .t--12c--sb30, .t_12c_sb30, .t__12c__sb30 {
+					@include sidebarRight(30%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR RIGHT] 35% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+				.t1csb35, .t-1c-sb35, .t--1c--sb35, .t_1c_sb35, .t__1c__sb35 {
+					@include sidebarRight(35%, 1, "col col");
+				}
+
+				.t2csb35, .t-2c-sb35, .t--2c--sb35, .t_2c_sb35, .t__2c__sb35 {
+					@include sidebarRight(35%, 2, "col col col");
+				}
+
+				.t3csb35, .t-3c-sb35, .t--3c--sb35, .t_3c_sb35, .t__3c__sb35 {
+					@include sidebarRight(35%, 3, "col col col col");
+				}
+
+				.t4csb35, .t-4c-sb35, .t--4c--sb35, .t_4c_sb35, .t__4c__sb35 {
+					@include sidebarRight(35%, 4, "col col col col col");
+				}
+
+				.t5csb35, .t-5c-sb35, .t--5c--sb35, .t_5c_sb35, .t__5c__sb35 {
+					@include sidebarRight(35%, 5, "col col col col col col");
+				}
+
+				.t6csb35, .t-6c-sb35, .t--6c--sb35, .t_6c_sb35, .t__6c__sb35 {
+					@include sidebarRight(35%, 6, "col col col col col col col");
+				}
+
+				.t7csb35, .t-7c-sb35, .t--7c--sb35, .t_7c_sb35, .t__7c__sb35 {
+					@include sidebarRight(35%, 7, "col col col col col col col col");
+				}
+
+				.t8csb35, .t-8c-sb35, .t--8c--sb35, .t_8c_sb35, .t__8c__sb35 {
+					@include sidebarRight(35%, 8, "col col col col col col col col col");
+				}
+
+				.t9csb35, .t-9c-sb35, .t--9c--sb35, .t_9c_sb35, .t__9c__sb35 {
+					@include sidebarRight(35%, 9, "col col col col col col col col col col");
+				}
+
+				.t10csb35, .t-10c-sb35, .t--10c--sb35, .t_10c_sb35, .t__10c__sb35 {
+					@include sidebarRight(35%, 10, "col col col col col col col col col col col");
+				}
+
+				.t11csb35, .t-11c-sb35, .t--11c--sb35, .t_11c_sb35, .t__11c__sb35 {
+					@include sidebarRight(35%, 11, "col col col col col col col col col col col col");
+				}
+
+				.t12csb35, .t-12c-sb35, .t--12c--sb35, .t_12c_sb35, .t__12c__sb35 {
+					@include sidebarRight(35%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR RIGHT] 40% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+				.t1csb40, .t-1c-sb40, .t--1c--sb40, .t_1c_sb40, .t__1c__sb40 {
+					@include sidebarRight(40%, 1, "col col");
+				}
+
+				.t2csb40, .t-2c-sb40, .t--2c--sb40, .t_2c_sb40, .t__2c__sb40 {
+					@include sidebarRight(40%, 2, "col col col");
+				}
+
+				.t3csb40, .t-3c-sb40, .t--3c--sb40, .t_3c_sb40, .t__3c__sb40 {
+					@include sidebarRight(40%, 3, "col col col col");
+				}
+
+				.t4csb40, .t-4c-sb40, .t--4c--sb40, .t_4c_sb40, .t__4c__sb40 {
+					@include sidebarRight(40%, 4, "col col col col col");
+				}
+
+				.t5csb40, .t-5c-sb40, .t--5c--sb40, .t_5c_sb40, .t__5c__sb40 {
+					@include sidebarRight(40%, 5, "col col col col col col");
+				}
+
+				.t6csb40, .t-6c-sb40, .t--6c--sb40, .t_6c_sb40, .t__6c__sb40 {
+					@include sidebarRight(40%, 6, "col col col col col col col");
+				}
+
+				.t7csb40, .t-7c-sb40, .t--7c--sb40, .t_7c_sb40, .t__7c__sb40 {
+					@include sidebarRight(40%, 7, "col col col col col col col col");
+				}
+
+				.t8csb40, .t-8c-sb40, .t--8c--sb40, .t_8c_sb40, .t__8c__sb40 {
+					@include sidebarRight(40%, 8, "col col col col col col col col col");
+				}
+
+				.t9csb40, .t-9c-sb40, .t--9c--sb40, .t_9c_sb40, .t__9c__sb40 {
+					@include sidebarRight(40%, 9, "col col col col col col col col col col");
+				}
+
+				.t10csb40, .t-10c-sb40, .t--10c--sb40, .t_10c_sb40, .t__10c__sb40 {
+					@include sidebarRight(40%, 10, "col col col col col col col col col col col");
+				}
+
+				.t11csb40, .t-11c-sb40, .t--11c--sb40, .t_11c_sb40, .t__11c__sb40 {
+					@include sidebarRight(40%, 11, "col col col col col col col col col col col col");
+				}
+
+				.t12csb40, .t-12c-sb40, .t--12c--sb40, .t_12c_sb40, .t__12c__sb40 {
+					@include sidebarRight(40%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR RIGHT] 45 % Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+				.t1csb45, .t-1c-sb45, .t--1c--sb45, .t_1c_sb45, .t__1c__sb45 {
+					@include sidebarRight(45%, 1, "col col");
+				   }
+
+				   .t2csb45, .t-2c-sb45, .t--2c--sb45, .t_2c_sb45, .t__2c__sb45 {
+					@include sidebarRight(45%, 2, "col col col");
+				   }
+
+				   .t3csb45, .t-3c-sb45, .t--3c--sb45, .t_3c_sb45, .t__3c__sb45 {
+					@include sidebarRight(45%, 3, "col col col col");
+				   }
+
+				   .t4csb45, .t-4c-sb45, .t--4c--sb45, .t_4c_sb45, .t__4c__sb45 {
+					@include sidebarRight(45%, 4, "col col col col col");
+				   }
+
+				   .t5csb45, .t-5c-sb45, .t--5c--sb45, .t_5c_sb45, .t__5c__sb45 {
+					@include sidebarRight(45%, 5, "col col col col col col");
+				   }
+
+				   .t6csb45, .t-6c-sb45, .t--6c--sb45, .t_6c_sb45, .t__6c__sb45 {
+					@include sidebarRight(45%, 6, "col col col col col col col");
+				   }
+
+				   .t7csb45, .t-7c-sb45, .t--7c--sb45, .t_7c_sb45, .t__7c__sb45 {
+					@include sidebarRight(45%, 7, "col col col col col col col col");
+				   }
+
+				   .t8csb45, .t-8c-sb45, .t--8c--sb45, .t_8c_sb45, .t__8c__sb45 {
+					@include sidebarRight(45%, 8, "col col col col col col col col col");
+				   }
+
+				   .t9csb45, .t-9c-sb45, .t--9c--sb45, .t_9c_sb45, .t__9c__sb45 {
+					@include sidebarRight(45%, 9, "col col col col col col col col col col");
+				   }
+
+				   .t10csb45, .t-10c-sb45, .t--10c--sb45, .t_10c_sb45, .t__10c__sb45 {
+					@include sidebarRight(45%, 10, "col col col col col col col col col col col");
+				   }
+
+				   .t11csb45, .t-11c-sb45, .t--11c--sb45, .t_11c_sb45, .t__11c__sb45 {
+					@include sidebarRight(45%, 11, "col col col col col col col col col col col col");
+				   }
+
+				   .t12csb45, .t-12c-sb45, .t--12c--sb45, .t_12c_sb45, .t__12c__sb45 {
+					@include sidebarRight(45%, 12, "col col col col col col col col col col col col col");
+				   }
+
+			/* [SIDEBAR RIGHT] 50% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+				.t1csb50, .t-1c-sb50, .t--1c--sb50, .t_1c_sb50, .t__1c__sb50 {
+					@include sidebarRight(50%, 1, "col col");
+				}
+
+				.t2csb50, .t-2c-sb50, .t--2c--sb50, .t_2c_sb50, .t__2c__sb50 {
+					@include sidebarRight(50%, 2, "col col col");
+				}
+
+				.t3csb50, .t-3c-sb50, .t--3c--sb50, .t_3c_sb50, .t__3c__sb50 {
+					@include sidebarRight(50%, 3, "col col col col");
+				}
+
+				.t4csb50, .t-4c-sb50, .t--4c--sb50, .t_4c_sb50, .t__4c__sb50 {
+					@include sidebarRight(50%, 4, "col col col col col");
+				}
+
+				.t5csb50, .t-5c-sb50, .t--5c--sb50, .t_5c_sb50, .t__5c__sb50 {
+					@include sidebarRight(50%, 5, "col col col col col col");
+				}
+
+				.t6csb50, .t-6c-sb50, .t--6c--sb50, .t_6c_sb50, .t__6c__sb50 {
+					@include sidebarRight(50%, 6, "col col col col col col col");
+				}
+
+				.t7csb50, .t-7c-sb50, .t--7c--sb50, .t_7c_sb50, .t__7c__sb50 {
+					@include sidebarRight(50%, 7, "col col col col col col col col");
+				}
+
+				.t8csb50, .t-8c-sb50, .t--8c--sb50, .t_8c_sb50, .t__8c__sb50 {
+					@include sidebarRight(50%, 8, "col col col col col col col col col");
+				}
+
+				.t9csb50, .t-9c-sb50, .t--9c--sb50, .t_9c_sb50, .t__9c__sb50 {
+					@include sidebarRight(50%, 9, "col col col col col col col col col col");
+				}
+
+				.t10csb50, .t-10c-sb50, .t--10c--sb50, .t_10c_sb50, .t__10c__sb50 {
+					@include sidebarRight(50%, 10, "col col col col col col col col col col col");
+				}
+
+				.t11csb50, .t-11c-sb50, .t--11c--sb50, .t_11c_sb50, .t__11c__sb50 {
+					@include sidebarRight(50%, 11, "col col col col col col col col col col col col");
+				}
+
+				.t12csb50, .t-12c-sb50, .t--12c--sb50, .t_12c_sb50, .t__12c__sb50 {
+					@include sidebarRight(50%, 12, "col col col col col col col col col col col col col");
+				}
+
+
+		} // End of Tablet Based Layouts
+
+	/* Mobile Layouts */
+
+		@media (max-width: 700px) {
+
+			/* Purely Column Based Layouts / Up to 12 Columns */
+
+				.m1c, .m-1c, .m--1c, .m_1c, .m__1c {
+					@include grid(1, "col");
+				}
+
+				.m2c, .m-2c, .m--2c, .m_2c, .m__2c {
+					@include grid(2, "col col");
+				}
+
+				.m3c, .m-3c, .m--3c, .m_3c, .m__3c {
+					@include grid(3, "col col col");
+				}
+
+				.m4c, .m-4c, .m--4c, .m_4c, .m__4c {
+					@include grid(4, "col col col col");
+				}
+
+				.m5c, .m-5c, .m--5c, .m_5c, .m__5c {
+					@include grid(5, "col col col col col");
+				}
+
+				.m6c, .m-6c, .m--6c, .m_6c, .m__6c {
+					@include grid(6, "col col col col col col");
+				}
+
+				.m7c, .m-7c, .m--7c, .m_7c, .m__7c {
+					@include grid(7, "col col col col col col col");
+				}
+
+				.m8c, .m-8c, .m--8c, .m_8c, .m__8c {
+					@include grid(8, "col col col col col col col col");
+				}
+
+				.m9c, .m-9c, .m--9c, .m_9c, .m__9c {
+					@include grid(9, "col col col col col col col col col");
+				}
+
+				.m10c, .m-10c, .m--10c, .m_10c, .m__10c {
+					@include grid(10, "col col col col col col col col col col");
+				}
+
+				.m11c, .m-11c, .m--11c, .m_11c, .m__11c {
+					@include grid(11, "col col col col col col col col col col col");
+				}
+
+				.m12c, .m-12c, .m--12c, .m_12c, .m__12c {
+					@include grid(12, "col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR LEFT] 5% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+				.msb51c, .m-sb5-1c, .m--sb5--1c, .m_sb5_1c, .m__sb5__1c {
+					@include sidebarLeft(5%, 1, "col col");
+				}
+
+				.msb52c, .m-sb5-2c, .m--sb5--2c, .m_sb5_2c, .m__sb5__2c {
+					@include sidebarLeft(5%, 2, "col col col");
+				}
+
+				.msb53c, .m-sb5-3c, .m--sb5--3c, .m_sb5_3c, .m__sb5__3c  {
+					@include sidebarLeft(5%, 3, "col col col col");
+				}
+
+				.msb54c, .m-sb5-4c, .m--sb5--4c, .m_sb5_4c, .m__sb5__4c {
+					@include sidebarLeft(5%, 4, "col col col col col");
+				}
+
+				.msb55c, .m-sb5-5c, .m--sb5--5c, .m_sb5_5c, .m__sb5__5c {
+					@include sidebarLeft(5%, 5, "col col col col col col");
+				}
+
+				.msb56c, .m-sb5-6c, .m--sb5--6c, .m_sb5_6c, .m__sb5__6c {
+					@include sidebarLeft(5%, 6, "col col col col col col col");
+				}
+
+				.msb57c, .m-sb5-7c, .m--sb5--7c, .m_sb5_7c, .m__sb5__7c  {
+					@include sidebarLeft(5%, 7, "col col col col col col col col");
+				}
+
+				.msb58c, .m-sb5-8c, .m--sb5--8c, .m_sb5_8c, .m__sb5__8c  {
+					@include sidebarLeft(5%, 8, "col col col col col col col col col");
+				}
+
+				.msb59c, .m-sb5-9c, .m--sb5--9c, .m_sb5_9, .m__sb5__9c  {
+					@include sidebarLeft(5%, 9, "col col col col col col col col col col");
+				}
+
+				.msb510c, .m-sb5-10c, .m--sb5--10c, .m_sb5_10c, .m__sb5__10c  {
+					@include sidebarLeft(5%, 10, "col col col col col col col col col col col");
+				}
+
+				.msb511c, .m-sb5-11c, .m--sb5--11c, .m_sb5_11c, .m__sb5__11c  {
+					@include sidebarLeft(5%, 11, "col col col col col col col col col col col col");
+				}
+
+				.msb512c, .m-sb5-12c, .m--sb5--12c, .m_sb5_12c, .m__sb5__12c  {
+					@include sidebarLeft(5%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR LEFT] 10% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+				.msb101c, .m-sb10-1c, .m--sb10--1c, .m_sb10_1c, .m__sb10__1c {
+					@include sidebarLeft(10%, 1, "col col");
+				}
+
+				.msb102c, .m-sb10-2c, .m--sb10--2c, .m_sb10_2c, .m__sb10__2c {
+					@include sidebarLeft(10%, 2, "col col col");
+				}
+
+				.msb103c, .m-sb10-3c, .m--sb10--3c, .m_sb10_3c, .m__sb10__3c  {
+					@include sidebarLeft(10%, 3, "col col col col");
+				}
+
+				.msb104c, .m-sb10-4c, .m--sb10--4c, .m_sb10_4c, .m__sb10__4c {
+					@include sidebarLeft(10%, 4, "col col col col col");
+				}
+
+				.msb105c, .m-sb10-5c, .m--sb10--5c, .m_sb10_5c, .m__sb10__5c {
+					@include sidebarLeft(10%, 5, "col col col col col col");
+				}
+
+				.msb106c, .m-sb10-6c, .m--sb10--6c, .m_sb10_6c, .m__sb10__6c {
+					@include sidebarLeft(10%, 6, "col col col col col col col");
+				}
+
+				.msb107c, .m-sb10-7c, .m--sb10--7c, .m_sb10_7c, .m__sb10__7c  {
+					@include sidebarLeft(10%, 7, "col col col col col col col col");
+				}
+
+				.msb108c, .m-sb10-8c, .m--sb10--8c, .m_sb10_8c, .m__sb10__8c  {
+					@include sidebarLeft(10%, 8, "col col col col col col col col col");
+				}
+
+				.msb109c, .m-sb10-9c, .m--sb10--9c, .m_sb10_9, .m__sb10__9c  {
+					@include sidebarLeft(10%, 9, "col col col col col col col col col col");
+				}
+
+				.msb1010c, .m-sb10-10c, .m--sb10--10c, .m_sb10_10c, .m__sb10__10c  {
+					@include sidebarLeft(10%, 10, "col col col col col col col col col col col");
+				}
+
+				.msb1011c, .m-sb10-11c, .m--sb10--11c, .m_sb10_11c, .m__sb10__11c  {
+					@include sidebarLeft(10%, 11, "col col col col col col col col col col col col");
+				}
+
+				.msb1012c, .m-sb10-12c, .m--sb10--12c, .m_sb10_12c, .m__sb10__12c  {
+					@include sidebarLeft(10%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR LEFT] 15% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+				.msb151c, .m-sb15-1c, .m--sb15--1c, .m_sb15_1c, .m__sb15__1c {
+					@include sidebarLeft(15%, 1, "col col");
+				}
+
+				.msb152c, .m-sb15-2c, .m--sb15--2c, .m_sb15_2c, .m__sb15__2c {
+					@include sidebarLeft(15%, 2, "col col col");
+				}
+
+				.msb153c, .m-sb15-3c, .m--sb15--3c, .m_sb15_3c, .m__sb15__3c  {
+					@include sidebarLeft(15%, 3, "col col col col");
+				}
+
+				.msb154c, .m-sb15-4c, .m--sb15--4c, .m_sb15_4c, .m__sb15__4c {
+					@include sidebarLeft(15%, 4, "col col col col col");
+				}
+
+				.msb155c, .m-sb15-5c, .m--sb15--5c, .m_sb15_5c, .m__sb15__5c {
+					@include sidebarLeft(15%, 5, "col col col col col col");
+				}
+
+				.msb156c, .m-sb15-6c, .m--sb15--6c, .m_sb15_6c, .m__sb15__6c {
+					@include sidebarLeft(15%, 6, "col col col col col col col");
+				}
+
+				.msb157c, .m-sb15-7c, .m--sb15--7c, .m_sb15_7c, .m__sb15__7c  {
+					@include sidebarLeft(15%, 7, "col col col col col col col col");
+				}
+
+				.msb158c, .m-sb15-8c, .m--sb15--8c, .m_sb15_8c, .m__sb15__8c  {
+					@include sidebarLeft(15%, 8, "col col col col col col col col col");
+				}
+
+				.msb159c, .m-sb15-9c, .m--sb15--9c, .m_sb15_9, .m__sb15__9c  {
+					@include sidebarLeft(15%, 9, "col col col col col col col col col col");
+				}
+
+				.msb1510c, .m-sb15-10c, .m--sb15--10c, .m_sb15_10c, .m__sb15__10c  {
+					@include sidebarLeft(15%, 10, "col col col col col col col col col col col");
+				}
+
+				.msb1511c, .m-sb15-11c, .m--sb15--11c, .m_sb15_11c, .m__sb15__11c  {
+					@include sidebarLeft(15%, 11, "col col col col col col col col col col col col");
+				}
+
+				.msb1512c, .m-sb15-12c, .m--sb15--12c, .m_sb15_12c, .m__sb15__12c  {
+					@include sidebarLeft(15%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR LEFT] 20% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+				.msb201c, .m-sb20-1c, .m--sb20--1c, .m_sb20_1c, .m__sb20__1c {
+					@include sidebarLeft(20%, 1, "col col");
+				}
+
+				.msb202c, .m-sb20-2c, .m--sb20--2c, .m_sb20_2c, .m__sb20__2c {
+					@include sidebarLeft(20%, 2, "col col col");
+				}
+
+				.msb203c, .m-sb20-3c, .m--sb20--3c, .m_sb20_3c, .m__sb20__3c  {
+					@include sidebarLeft(20%, 3, "col col col col");
+				}
+
+				.msb204c, .m-sb20-4c, .m--sb20--4c, .m_sb20_4c, .m__sb20__4c {
+					@include sidebarLeft(20%, 4, "col col col col col");
+				}
+
+				.msb205c, .m-sb20-5c, .m--sb20--5c, .m_sb20_5c, .m__sb20__5c {
+					@include sidebarLeft(20%, 5, "col col col col col col");
+				}
+
+				.msb206c, .m-sb20-6c, .m--sb20--6c, .m_sb20_6c, .m__sb20__6c {
+					@include sidebarLeft(20%, 6, "col col col col col col col");
+				}
+
+				.msb207c, .m-sb20-7c, .m--sb20--7c, .m_sb20_7c, .m__sb20__7c  {
+					@include sidebarLeft(20%, 7, "col col col col col col col col");
+				}
+
+				.msb208c, .m-sb20-8c, .m--sb20--8c, .m_sb20_8c, .m__sb20__8c  {
+					@include sidebarLeft(20%, 8, "col col col col col col col col col");
+				}
+
+				.msb209c, .m-sb20-9c, .m--sb20--9c, .m_sb20_9, .m__sb20__9c  {
+					@include sidebarLeft(20%, 9, "col col col col col col col col col col");
+				}
+
+				.msb2010c, .m-sb20-10c, .m--sb20--10c, .m_sb20_10c, .m__sb20__10c  {
+					@include sidebarLeft(20%, 10, "col col col col col col col col col col col");
+				}
+
+				.msb2011c, .m-sb20-11c, .m--sb20--11c, .m_sb20_11c, .m__sb20__11c  {
+					@include sidebarLeft(20%, 11, "col col col col col col col col col col col col");
+				}
+
+				.msb2012c, .m-sb20-12c, .m--sb20--12c, .m_sb20_12c, .m__sb20__12c  {
+					@include sidebarLeft(20%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR LEFT] 25% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+				.msb251c, .m-sb25-1c, .m--sb25--1c, .m_sb25_1c, .m__sb25__1c {
+					@include sidebarLeft(25%, 1, "col col");
+				}
+
+				.msb252c, .m-sb25-2c, .m--sb25--2c, .m_sb25_2c, .m__sb25__2c {
+					@include sidebarLeft(25%, 2, "col col col");
+				}
+
+				.msb253c, .m-sb25-3c, .m--sb25--3c, .m_sb25_3c, .m__sb25__3c  {
+					@include sidebarLeft(25%, 3, "col col col col");
+				}
+
+				.msb254c, .m-sb25-4c, .m--sb25--4c, .m_sb25_4c, .m__sb25__4c {
+					@include sidebarLeft(25%, 4, "col col col col col");
+				}
+
+				.msb255c, .m-sb25-5c, .m--sb25--5c, .m_sb25_5c, .m__sb25__5c {
+					@include sidebarLeft(25%, 5, "col col col col col col");
+				}
+
+				.msb256c, .m-sb25-6c, .m--sb25--6c, .m_sb25_6c, .m__sb25__6c {
+					@include sidebarLeft(25%, 6, "col col col col col col col");
+				}
+
+				.msb257c, .m-sb25-7c, .m--sb25--7c, .m_sb25_7c, .m__sb25__7c  {
+					@include sidebarLeft(25%, 7, "col col col col col col col col");
+				}
+
+				.msb258c, .m-sb25-8c, .m--sb25--8c, .m_sb25_8c, .m__sb25__8c  {
+					@include sidebarLeft(25%, 8, "col col col col col col col col col");
+				}
+
+				.msb259c, .m-sb25-9c, .m--sb25--9c, .m_sb25_9, .m__sb25__9c  {
+					@include sidebarLeft(25%, 9, "col col col col col col col col col col");
+				}
+
+				.msb2510c, .m-sb25-10c, .m--sb25--10c, .m_sb25_10c, .m__sb25__10c  {
+					@include sidebarLeft(25%, 10, "col col col col col col col col col col col");
+				}
+
+				.msb2511c, .m-sb25-11c, .m--sb25--11c, .m_sb25_11c, .m__sb25__11c  {
+					@include sidebarLeft(25%, 11, "col col col col col col col col col col col col");
+				}
+
+				.msb2512c, .m-sb25-12c, .m--sb25--12c, .m_sb25_12c, .m__sb25__12c  {
+					@include sidebarLeft(25%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR LEFT] 30% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+				.msb301c, .m-sb30-1c, .m--sb30--1c, .m_sb30_1c, .m__sb30__1c {
+					@include sidebarLeft(30%, 1, "col col");
+				}
+
+				.msb302c, .m-sb30-2c, .m--sb30--2c, .m_sb30_2c, .m__sb30__2c {
+					@include sidebarLeft(30%, 2, "col col col");
+				}
+
+				.msb303c, .m-sb30-3c, .m--sb30--3c, .m_sb30_3c, .m__sb30__3c  {
+					@include sidebarLeft(30%, 3, "col col col col");
+				}
+
+				.msb304c, .m-sb30-4c, .m--sb30--4c, .m_sb30_4c, .m__sb30__4c {
+					@include sidebarLeft(30%, 4, "col col col col col");
+				}
+
+				.msb305c, .m-sb30-5c, .m--sb30--5c, .m_sb30_5c, .m__sb30__5c {
+					@include sidebarLeft(30%, 5, "col col col col col col");
+				}
+
+				.msb306c, .m-sb30-6c, .m--sb30--6c, .m_sb30_6c, .m__sb30__6c {
+					@include sidebarLeft(30%, 6, "col col col col col col col");
+				}
+
+				.msb307c, .m-sb30-7c, .m--sb30--7c, .m_sb30_7c, .m__sb30__7c  {
+					@include sidebarLeft(30%, 7, "col col col col col col col col");
+				}
+
+				.msb308c, .m-sb30-8c, .m--sb30--8c, .m_sb30_8c, .m__sb30__8c  {
+					@include sidebarLeft(30%, 8, "col col col col col col col col col");
+				}
+
+				.msb309c, .m-sb30-9c, .m--sb30--9c, .m_sb30_9, .m__sb30__9c  {
+					@include sidebarLeft(30%, 9, "col col col col col col col col col col");
+				}
+
+				.msb3010c, .m-sb30-10c, .m--sb30--10c, .m_sb30_10c, .m__sb30__10c  {
+					@include sidebarLeft(30%, 10, "col col col col col col col col col col col");
+				}
+
+				.msb3011c, .m-sb30-11c, .m--sb30--11c, .m_sb30_11c, .m__sb30__11c  {
+					@include sidebarLeft(30%, 11, "col col col col col col col col col col col col");
+				}
+
+				.msb3012c, .m-sb30-12c, .m--sb30--12c, .m_sb30_12c, .m__sb30__12c  {
+					@include sidebarLeft(30%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR LEFT] 35% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+				.msb351c, .m-sb35-1c, .m--sb35--1c, .m_sb35_1c, .m__sb35__1c {
+					@include sidebarLeft(35%, 1, "col col");
+				}
+
+				.msb352c, .m-sb35-2c, .m--sb35--2c, .m_sb35_2c, .m__sb35__2c {
+					@include sidebarLeft(35%, 2, "col col col");
+				}
+
+				.msb353c, .m-sb35-3c, .m--sb35--3c, .m_sb35_3c, .m__sb35__3c  {
+					@include sidebarLeft(35%, 3, "col col col col");
+				}
+
+				.msb354c, .m-sb35-4c, .m--sb35--4c, .m_sb35_4c, .m__sb35__4c {
+					@include sidebarLeft(35%, 4, "col col col col col");
+				}
+
+				.msb355c, .m-sb35-5c, .m--sb35--5c, .m_sb35_5c, .m__sb35__5c {
+					@include sidebarLeft(35%, 5, "col col col col col col");
+				}
+
+				.msb356c, .m-sb35-6c, .m--sb35--6c, .m_sb35_6c, .m__sb35__6c {
+					@include sidebarLeft(35%, 6, "col col col col col col col");
+				}
+
+				.msb357c, .m-sb35-7c, .m--sb35--7c, .m_sb35_7c, .m__sb35__7c  {
+					@include sidebarLeft(35%, 7, "col col col col col col col col");
+				}
+
+				.msb358c, .m-sb35-8c, .m--sb35--8c, .m_sb35_8c, .m__sb35__8c  {
+					@include sidebarLeft(35%, 8, "col col col col col col col col col");
+				}
+
+				.msb359c, .m-sb35-9c, .m--sb35--9c, .m_sb35_9, .m__sb35__9c  {
+					@include sidebarLeft(35%, 9, "col col col col col col col col col col");
+				}
+
+				.msb3510c, .m-sb35-10c, .m--sb35--10c, .m_sb35_10c, .m__sb35__10c  {
+					@include sidebarLeft(35%, 10, "col col col col col col col col col col col");
+				}
+
+				.msb3511c, .m-sb35-11c, .m--sb35--11c, .m_sb35_11c, .m__sb35__11c  {
+					@include sidebarLeft(35%, 11, "col col col col col col col col col col col col");
+				}
+
+				.msb3512c, .m-sb35-12c, .m--sb35--12c, .m_sb35_12c, .m__sb35__12c  {
+					@include sidebarLeft(35%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR LEFT] 40% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+				.msb401c, .m-sb40-1c, .m--sb40--1c, .m_sb40_1c, .m__sb40__1c {
+					@include sidebarLeft(40%, 1, "col col col");
+				}
+
+				.msb402c, .m-sb40-2c, .m--sb40--2c, .m_sb40_2c, .m__sb40__2c {
+					@include sidebarLeft(40%, 2, "col col col");
+				}
+
+				.msb403c, .m-sb40-3c, .m--sb40--3c, .m_sb40_3c, .m__sb40__3c  {
+					@include sidebarLeft(40%, 3, "col col col col");
+				}
+
+				.msb404c, .m-sb40-4c, .m--sb40--4c, .m_sb40_4c, .m__sb40__4c {
+					@include sidebarLeft(40%, 4, "col col col col col");
+				}
+
+				.msb405c, .m-sb40-5c, .m--sb40--5c, .m_sb40_5c, .m__sb40__5c {
+					@include sidebarLeft(40%, 5, "col col col col col col");
+				}
+
+				.msb406c, .m-sb40-6c, .m--sb40--6c, .m_sb40_6c, .m__sb40__6c {
+					@include sidebarLeft(40%, 6, "col col col col col col col");
+				}
+
+				.msb407c, .m-sb40-7c, .m--sb40--7c, .m_sb40_7c, .m__sb40__7c  {
+					@include sidebarLeft(40%, 7, "col col col col col col col col");
+				}
+
+				.msb408c, .m-sb40-8c, .m--sb40--8c, .m_sb40_8c, .m__sb40__8c  {
+					@include sidebarLeft(40%, 8, "col col col col col col col col col");
+				}
+
+				.msb409c, .m-sb40-9c, .m--sb40--9c, .m_sb40_9, .m__sb40__9c  {
+					@include sidebarLeft(40%, 9, "col col col col col col col col col col");
+				}
+
+				.msb4010c, .m-sb40-10c, .m--sb40--10c, .m_sb40_10c, .m__sb40__10c  {
+					@include sidebarLeft(40%, 10, "col col col col col col col col col col col");
+				}
+
+				.msb4011c, .m-sb40-11c, .m--sb40--11c, .m_sb40_11c, .m__sb40__11c  {
+					@include sidebarLeft(40%, 11, "col col col col col col col col col col col col");
+				}
+
+				.msb4012c, .m-sb40-12c, .m--sb40--12c, .m_sb40_12c, .m__sb40__12c  {
+					@include sidebarLeft(40%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR LEFT] 45% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+				.msb451c, .m-sb45-1c, .m--sb45--1c, .m_sb45_1c, .m__sb45__1c {
+					@include sidebarLeft(45%, 1, "col col");
+				}
+
+				.msb452c, .m-sb45-2c, .m--sb45--2c, .m_sb45_2c, .m__sb45__2c {
+					@include sidebarLeft(45%, 2, "col col col");
+				}
+
+				.msb453c, .m-sb45-3c, .m--sb45--3c, .m_sb45_3c, .m__sb45__3c  {
+					@include sidebarLeft(45%, 3, "col col col col");
+				}
+
+				.msb454c, .m-sb45-4c, .m--sb45--4c, .m_sb45_4c, .m__sb45__4c {
+					@include sidebarLeft(45%, 4, "col col col col col");
+				}
+
+				.msb455c, .m-sb45-5c, .m--sb45--5c, .m_sb45_5c, .m__sb45__5c {
+					@include sidebarLeft(45%, 5, "col col col col col col");
+				}
+
+				.msb456c, .m-sb45-6c, .m--sb45--6c, .m_sb45_6c, .m__sb45__6c {
+					@include sidebarLeft(45%, 6, "col col col col col col col");
+				}
+
+				.msb457c, .m-sb45-7c, .m--sb45--7c, .m_sb45_7c, .m__sb45__7c  {
+					@include sidebarLeft(45%, 7, "col col col col col col col col");
+				}
+
+				.msb458c, .m-sb45-8c, .m--sb45--8c, .m_sb45_8c, .m__sb45__8c  {
+					@include sidebarLeft(45%, 8, "col col col col col col col col col");
+				}
+
+				.msb459c, .m-sb45-9c, .m--sb45--9c, .m_sb45_9, .m__sb45__9c  {
+					@include sidebarLeft(45%, 9, "col col col col col col col col col col");
+				}
+
+				.msb4510c, .m-sb45-10c, .m--sb45--10c, .m_sb45_10c, .m__sb45__10c  {
+					@include sidebarLeft(45%, 10, "col col col col col col col col col col col");
+				}
+
+				.msb4511c, .m-sb45-11c, .m--sb45--11c, .m_sb45_11c, .m__sb45__11c  {
+					@include sidebarLeft(45%, 11, "col col col col col col col col col col col col");
+				}
+
+				.msb4512c, .m-sb45-12c, .m--sb45--12c, .m_sb45_12c, .m__sb45__12c  {
+					@include sidebarLeft(45%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR LEFT] 50% Width Sidebar LEFT SIDE / + Up to 12 Columns for Content on Right */
+
+				.msb501c, .m-sb50-1c, .m--sb50--1c, .m_sb50_1c, .m__sb50__1c {
+					@include sidebarLeft(50%, 1, "col col");
+				}
+
+				.msb502c, .m-sb50-2c, .m--sb50--2c, .m_sb50_2c, .m__sb50__2c {
+					@include sidebarLeft(50%, 2, "col col col");
+				}
+
+				.msb503c, .m-sb50-3c, .m--sb50--3c, .m_sb50_3c, .m__sb50__3c  {
+					@include sidebarLeft(50%, 3, "col col col col");
+				}
+
+				.msb504c, .m-sb50-4c, .m--sb50--4c, .m_sb50_4c, .m__sb50__4c {
+					@include sidebarLeft(50%, 4, "col col col col col");
+				}
+
+				.msb505c, .m-sb50-5c, .m--sb50--5c, .m_sb50_5c, .m__sb50__5c {
+					@include sidebarLeft(50%, 5, "col col col col col");
+				}
+
+				.msb506c, .m-sb50-6c, .m--sb50--6c, .m_sb50_6c, .m__sb50__6c {
+					@include sidebarLeft(50%, 6, "col col col col col col col");
+				}
+
+				.msb507c, .m-sb50-7c, .m--sb50--7c, .m_sb50_7c, .m__sb50__7c  {
+					@include sidebarLeft(50%, 7, "col col col col col col col col");
+				}
+
+				.msb508c, .m-sb50-8c, .m--sb50--8c, .m_sb50_8c, .m__sb50__8c  {
+					@include sidebarLeft(50%, 8, "col col col col col col col col col");
+				}
+
+				.msb509c, .m-sb50-9c, .m--sb50--9c, .m_sb50_9, .m__sb50__9c  {
+					@include sidebarLeft(50%, 9, "col col col col col col col col col col");
+				}
+
+				.msb5010c, .m-sb50-10c, .m--sb50--10c, .m_sb50_10c, .m__sb50__10c  {
+					@include sidebarLeft(50%, 10, "col col col col col col col col col col col");
+				}
+
+				.msb5011c, .m-sb50-11c, .m--sb50--11c, .m_sb50_11c, .m__sb50__11c  {
+					@include sidebarLeft(50%, 11, "col col col col col col col col col col col col");
+				}
+
+				.msb5012c, .m-sb50-12c, .m--sb50--12c, .m_sb50_12c, .m__sb50__12c  {
+					@include sidebarLeft(50%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR RIGHT] 5% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+				.m1csb5, .m-1c-sb5, .m--1c--sb5, .m_1c_sb5, .m__1c__sb5 {
+					@include sidebarRight(5%, 1, "col col");
+				}
+
+				.m2csb5, .m-2c-sb5, .m--2c--sb5, .m_2c_sb5, .m__2c__sb5 {
+					@include sidebarRight(5%, 2, "col col col");
+				}
+
+				.m3csb5, .m-3c-sb5, .m--3c--sb5, .m_3c_sb5, .m__3c__sb5 {
+					@include sidebarRight(5%, 3, "col col col col");
+				}
+
+				.m4csb5, .m-4c-sb5, .m--4c--sb5, .m_4c_sb5, .m__4c__sb5 {
+					@include sidebarRight(5%, 4, "col col col col col");
+				}
+
+				.m5csb5, .m-5c-sb5, .m--5c--sb5, .m_5c_sb5, .m__5c__sb5 {
+					@include sidebarRight(5%, 5, "col col col col col col");
+				}
+
+				.m6csb5, .m-6c-sb5, .m--6c--sb5, .m_6c_sb5, .m__6c__sb5 {
+					@include sidebarRight(5%, 6, "col col col col col col col");
+				}
+
+				.m7csb5, .m-7c-sb5, .m--7c--sb5, .m_7c_sb5, .m__7c__sb5 {
+					@include sidebarRight(5%, 7, "col col col col col col col col");
+				}
+
+				.m8csb5, .m-8c-sb5, .m--8c--sb5, .m_8c_sb5, .m__8c__sb5 {
+					@include sidebarRight(5%, 8, "col col col col col col col col col");
+				}
+
+				.m9csb5, .m-9c-sb5, .m--9c--sb5, .m_9c_sb5, .m__9c__sb5 {
+					@include sidebarRight(5%, 9, "col col col col col col col col col col");
+				}
+
+				.m10csb5, .m-10c-sb5, .m--10c--sb5, .m_10c_sb5, .m__10c__sb5 {
+					@include sidebarRight(5%, 10, "col col col col col col col col col col col");
+				}
+
+				.m11csb5, .m-11c-sb5, .m--11c--sb5, .m_11c_sb5, .m__11c__sb5 {
+					@include sidebarRight(5%, 11, "col col col col col col col col col col col col");
+				}
+
+				.m12csb5, .m-12c-sb5, .m--12c--sb5, .m_12c_sb5, .m__12c__sb5 {
+					@include sidebarRight(5%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR RIGHT] 10% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+				.m1csb10, .m-1c-sb10, .m--1c--sb10, .m_1c_sb10, .m__1c__sb10 {
+					@include sidebarRight(10%, 1, "col col");
+				}
+
+				.m2csb10, .m-2c-sb10, .m--2c--sb10, .m_2c_sb10, .m__2c__sb10 {
+					@include sidebarRight(10%, 2, "col col col");
+				}
+
+				.m3csb10, .m-3c-sb10, .m--3c--sb10, .m_3c_sb10, .m__3c__sb10 {
+					@include sidebarRight(10%, 3, "col col col col");
+				}
+
+				.m4csb10, .m-4c-sb10, .m--4c--sb10, .m_4c_sb10, .m__4c__sb10 {
+					@include sidebarRight(10%, 4, "col col col col col");
+				}
+
+				.m5csb10, .m-5c-sb10, .m--5c--sb10, .m_5c_sb10, .m__5c__sb10 {
+					@include sidebarRight(10%, 5, "col col col col col col");
+				}
+
+				.m6csb10, .m-6c-sb10, .m--6c--sb10, .m_6c_sb10, .m__6c__sb10 {
+					@include sidebarRight(10%, 6, "col col col col col col col");
+				}
+
+				.m7csb10, .m-7c-sb10, .m--7c--sb10, .m_7c_sb10, .m__7c__sb10 {
+					@include sidebarRight(10%, 7, "col col col col col col col col");
+				}
+
+				.m8csb10, .m-8c-sb10, .m--8c--sb10, .m_8c_sb10, .m__8c__sb10 {
+					@include sidebarRight(10%, 8, "col col col col col col col col col");
+				}
+
+				.m9csb10, .m-9c-sb10, .m--9c--sb10, .m_9c_sb10, .m__9c__sb10 {
+					@include sidebarRight(10%, 9, "col col col col col col col col col col");
+				}
+
+				.m10csb10, .m-10c-sb10, .m--10c--sb10, .m_10c_sb10, .m__10c__sb10 {
+					@include sidebarRight(10%, 10, "col col col col col col col col col col col");
+				}
+
+				.m11csb10, .m-11c-sb10, .m--11c--sb10, .m_11c_sb10, .m__11c__sb10 {
+					@include sidebarRight(10%, 11, "col col col col col col col col col col col col");
+				}
+
+				.m12csb10, .m-12c-sb10, .m--12c--sb10, .m_12c_sb10, .m__12c__sb10 {
+					@include sidebarRight(10%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR RIGHT] 15% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+				.m1csb15, .m-1c-sb15, .m--1c--sb15, .m_1c_sb15, .m__1c__sb15 {
+					@include sidebarRight(15%, 1, "col col");
+				}
+
+				.m2csb15, .m-2c-sb15, .m--2c--sb15, .m_2c_sb15, .m__2c__sb15 {
+					@include sidebarRight(15%, 2, "col col col");
+				}
+
+				.m3csb15, .m-3c-sb15, .m--3c--sb15, .m_3c_sb15, .m__3c__sb15 {
+					@include sidebarRight(15%, 3, "col col col col");
+				}
+
+				.m4csb15, .m-4c-sb15, .m--4c--sb15, .m_4c_sb15, .m__4c__sb15 {
+					@include sidebarRight(15%, 4, "col col col col col");
+				}
+
+				.m5csb15, .m-5c-sb15, .m--5c--sb15, .m_5c_sb15, .m__5c__sb15 {
+					@include sidebarRight(15%, 5, "col col col col col col");
+				}
+
+				.m6csb15, .m-6c-sb15, .m--6c--sb15, .m_6c_sb15, .m__6c__sb15 {
+					@include sidebarRight(15%, 6, "col col col col col col col");
+				}
+
+				.m7csb15, .m-7c-sb15, .m--7c--sb15, .m_7c_sb15, .m__7c__sb15 {
+					@include sidebarRight(15%, 7, "col col col col col col col col");
+				}
+
+				.m8csb15, .m-8c-sb15, .m--8c--sb15, .m_8c_sb15, .m__8c__sb15 {
+					@include sidebarRight(15%, 8, "col col col col col col col col col");
+				}
+
+				.m9csb15, .m-9c-sb15, .m--9c--sb15, .m_9c_sb15, .m__9c__sb15 {
+					@include sidebarRight(15%, 9, "col col col col col col col col col col");
+				}
+
+				.m10csb15, .m-10c-sb15, .m--10c--sb15, .m_10c_sb15, .m__10c__sb15 {
+					@include sidebarRight(15%, 10, "col col col col col col col col col col col");
+				}
+
+				.m11csb15, .m-11c-sb15, .m--11c--sb15, .m_11c_sb15, .m__11c__sb15 {
+					@include sidebarRight(15%, 11, "col col col col col col col col col col col col");
+				}
+
+				.m12csb15, .m-12c-sb15, .m--12c--sb15, .m_12c_sb15, .m__12c__sb15 {
+					@include sidebarRight(15%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR RIGHT] 20% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+				.m1csb20, .m-1c-sb20, .m--1c--sb20, .m_1c_sb20, .m__1c__sb20 {
+					@include sidebarRight(20%, 1, "col col");
+				}
+
+				.m2csb20, .m-2c-sb20, .m--2c--sb20, .m_2c_sb20, .m__2c__sb20 {
+					@include sidebarRight(20%, 2, "col col col");
+				}
+
+				.m3csb20, .m-3c-sb20, .m--3c--sb20, .m_3c_sb20, .m__3c__sb20 {
+					@include sidebarRight(20%, 3, "col col col col");
+				}
+
+				.m4csb20, .m-4c-sb20, .m--4c--sb20, .m_4c_sb20, .m__4c__sb20 {
+					@include sidebarRight(20%, 4, "col col col col col");
+				}
+
+				.m5csb20, .m-5c-sb20, .m--5c--sb20, .m_5c_sb20, .m__5c__sb20 {
+					@include sidebarRight(20%, 5, "col col col col col col");
+				}
+
+				.m6csb20, .m-6c-sb20, .m--6c--sb20, .m_6c_sb20, .m__6c__sb20 {
+					@include sidebarRight(20%, 6, "col col col col col col col");
+				}
+
+				.m7csb20, .m-7c-sb20, .m--7c--sb20, .m_7c_sb20, .m__7c__sb20 {
+					@include sidebarRight(20%, 7, "col col col col col col col col");
+				}
+
+				.m8csb20, .m-8c-sb20, .m--8c--sb20, .m_8c_sb20, .m__8c__sb20 {
+					@include sidebarRight(20%, 8, "col col col col col col col col col");
+				}
+
+				.m9csb20, .m-9c-sb20, .m--9c--sb20, .m_9c_sb20, .m__9c__sb20 {
+					@include sidebarRight(20%, 9, "col col col col col col col col col col");
+				}
+
+				.m10csb20, .m-10c-sb20, .m--10c--sb20, .m_10c_sb20, .m__10c__sb20 {
+					@include sidebarRight(20%, 10, "col col col col col col col col col col col");
+				}
+
+				.m11csb20, .m-11c-sb20, .m--11c--sb20, .m_11c_sb20, .m__11c__sb20 {
+					@include sidebarRight(20%, 11, "col col col col col col col col col col col col");
+				}
+
+				.m12csb20, .m-12c-sb20, .m--12c--sb20, .m_12c_sb20, .m__12c__sb20 {
+					@include sidebarRight(20%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR RIGHT] 25% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+				.m1csb25, .m-1c-sb25, .m--1c--sb25, .m_1c_sb25, .m__1c__sb25 {
+					@include sidebarRight(25%, 1, "col col");
+				}
+
+				.m2csb25, .m-2c-sb25, .m--2c--sb25, .m_2c_sb25, .m__2c__sb25 {
+					@include sidebarRight(25%, 2, "col col col");
+				}
+
+				.m3csb25, .m-3c-sb25, .m--3c--sb25, .m_3c_sb25, .m__3c__sb25 {
+					@include sidebarRight(25%, 3, "col col col col");
+				}
+
+				.m4csb25, .m-4c-sb25, .m--4c--sb25, .m_4c_sb25, .m__4c__sb25 {
+					@include sidebarRight(25%, 4, "col col col col col");
+				}
+
+				.m5csb25, .m-5c-sb25, .m--5c--sb25, .m_5c_sb25, .m__5c__sb25 {
+					@include sidebarRight(25%, 5, "col col col col col col");
+				}
+
+				.m6csb25, .m-6c-sb25, .m--6c--sb25, .m_6c_sb25, .m__6c__sb25 {
+					@include sidebarRight(25%, 6, "col col col col col col col");
+				}
+
+				.m7csb25, .m-7c-sb25, .m--7c--sb25, .m_7c_sb25, .m__7c__sb25 {
+					@include sidebarRight(25%, 7, "col col col col col col col col");
+				}
+
+				.m8csb25, .m-8c-sb25, .m--8c--sb25, .m_8c_sb25, .m__8c__sb25 {
+					@include sidebarRight(25%, 8, "col col col col col col col col col");
+				}
+
+				.m9csb25, .m-9c-sb25, .m--9c--sb25, .m_9c_sb25, .m__9c__sb25 {
+					@include sidebarRight(25%, 9, "col col col col col col col col col col");
+				}
+
+				.m10csb25, .m-10c-sb25, .m--10c--sb25, .m_10c_sb25, .m__10c__sb25 {
+					@include sidebarRight(25%, 10, "col col col col col col col col col col col");
+				}
+
+				.m11csb25, .m-11c-sb25, .m--11c--sb25, .m_11c_sb25, .m__11c__sb25 {
+					@include sidebarRight(25%, 11, "col col col col col col col col col col col col");
+				}
+
+				.m12csb25, .m-12c-sb25, .m--12c--sb25, .m_12c_sb25, .m__12c__sb25 {
+					@include sidebarRight(25%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR RIGHT] 30% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+				.m1csb30, .m-1c-sb30, .m--1c--sb30, .m_1c_sb30, .m__1c__sb30 {
+					@include sidebarRight(30%, 1, "col col");
+				}
+
+				.m2csb30, .m-2c-sb30, .m--2c--sb30, .m_2c_sb30, .m__2c__sb30 {
+					@include sidebarRight(30%, 2, "col col col");
+				}
+
+				.m3csb30, .m-3c-sb30, .m--3c--sb30, .m_3c_sb30, .m__3c__sb30 {
+					@include sidebarRight(30%, 3, "col col col col");
+				}
+
+				.m4csb30, .m-4c-sb30, .m--4c--sb30, .m_4c_sb30, .m__4c__sb30 {
+					@include sidebarRight(30%, 4, "col col col col col");
+				}
+
+				.m5csb30, .m-5c-sb30, .m--5c--sb30, .m_5c_sb30, .m__5c__sb30 {
+					@include sidebarRight(30%, 5, "col col col col col col");
+				}
+
+				.m6csb30, .m-6c-sb30, .m--6c--sb30, .m_6c_sb30, .m__6c__sb30 {
+					@include sidebarRight(30%, 6, "col col col col col col col");
+				}
+
+				.m7csb30, .m-7c-sb30, .m--7c--sb30, .m_7c_sb30, .m__7c__sb30 {
+					@include sidebarRight(30%, 7, "col col col col col col col col");
+				}
+
+				.m8csb30, .m-8c-sb30, .m--8c--sb30, .m_8c_sb30, .m__8c__sb30 {
+					@include sidebarRight(30%, 8, "col col col col col col col col col");
+				}
+
+				.m9csb30, .m-9c-sb30, .m--9c--sb30, .m_9c_sb30, .m__9c__sb30 {
+					@include sidebarRight(30%, 9, "col col col col col col col col col col");
+				}
+
+				.m10csb30, .m-10c-sb30, .m--10c--sb30, .m_10c_sb30, .m__10c__sb30 {
+					@include sidebarRight(30%, 10, "col col col col col col col col col col col");
+				}
+
+				.m11csb30, .m-11c-sb30, .m--11c--sb30, .m_11c_sb30, .m__11c__sb30 {
+					@include sidebarRight(30%, 11, "col col col col col col col col col col col col");
+				}
+
+				.m12csb30, .m-12c-sb30, .m--12c--sb30, .m_12c_sb30, .m__12c__sb30 {
+					@include sidebarRight(30%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR RIGHT] 35% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+				.m1csb35, .m-1c-sb35, .m--1c--sb35, .m_1c_sb35, .m__1c__sb35 {
+					@include sidebarRight(35%, 1, "col col");
+				}
+
+				.m2csb35, .m-2c-sb35, .m--2c--sb35, .m_2c_sb35, .m__2c__sb35 {
+					@include sidebarRight(35%, 2, "col col col");
+				}
+
+				.m3csb35, .m-3c-sb35, .m--3c--sb35, .m_3c_sb35, .m__3c__sb35 {
+					@include sidebarRight(35%, 3, "col col col col");
+				}
+
+				.m4csb35, .m-4c-sb35, .m--4c--sb35, .m_4c_sb35, .m__4c__sb35 {
+					@include sidebarRight(35%, 4, "col col col col col");
+				}
+
+				.m5csb35, .m-5c-sb35, .m--5c--sb35, .m_5c_sb35, .m__5c__sb35 {
+					@include sidebarRight(35%, 5, "col col col col col col");
+				}
+
+				.m6csb35, .m-6c-sb35, .m--6c--sb35, .m_6c_sb35, .m__6c__sb35 {
+					@include sidebarRight(35%, 6, "col col col col col col col");
+				}
+
+				.m7csb35, .m-7c-sb35, .m--7c--sb35, .m_7c_sb35, .m__7c__sb35 {
+					@include sidebarRight(35%, 7, "col col col col col col col col");
+				}
+
+				.m8csb35, .m-8c-sb35, .m--8c--sb35, .m_8c_sb35, .m__8c__sb35 {
+					@include sidebarRight(35%, 8, "col col col col col col col col col");
+				}
+
+				.m9csb35, .m-9c-sb35, .m--9c--sb35, .m_9c_sb35, .m__9c__sb35 {
+					@include sidebarRight(35%, 9, "col col col col col col col col col col");
+				}
+
+				.m10csb35, .m-10c-sb35, .m--10c--sb35, .m_10c_sb35, .m__10c__sb35 {
+					@include sidebarRight(35%, 10, "col col col col col col col col col col col");
+				}
+
+				.m11csb35, .m-11c-sb35, .m--11c--sb35, .m_11c_sb35, .m__11c__sb35 {
+					@include sidebarRight(35%, 11, "col col col col col col col col col col col col");
+				}
+
+				.m12csb35, .m-12c-sb35, .m--12c--sb35, .m_12c_sb35, .m__12c__sb35 {
+					@include sidebarRight(35%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR RIGHT] 40% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+				.m1csb40, .m-1c-sb40, .m--1c--sb40, .m_1c_sb40, .m__1c__sb40 {
+					@include sidebarRight(40%, 1, "col col");
+				}
+
+				.m2csb40, .m-2c-sb40, .m--2c--sb40, .m_2c_sb40, .m__2c__sb40 {
+					@include sidebarRight(40%, 2, "col col col");
+				}
+
+				.m3csb40, .m-3c-sb40, .m--3c--sb40, .m_3c_sb40, .m__3c__sb40 {
+					@include sidebarRight(40%, 3, "col col col col");
+				}
+
+				.m4csb40, .m-4c-sb40, .m--4c--sb40, .m_4c_sb40, .m__4c__sb40 {
+					@include sidebarRight(40%, 4, "col col col col col");
+				}
+
+				.m5csb40, .m-5c-sb40, .m--5c--sb40, .m_5c_sb40, .m__5c__sb40 {
+					@include sidebarRight(40%, 5, "col col col col col col");
+				}
+
+				.m6csb40, .m-6c-sb40, .m--6c--sb40, .m_6c_sb40, .m__6c__sb40 {
+					@include sidebarRight(40%, 6, "col col col col col col col");
+				}
+
+				.m7csb40, .m-7c-sb40, .m--7c--sb40, .m_7c_sb40, .m__7c__sb40 {
+					@include sidebarRight(40%, 7, "col col col col col col col col");
+				}
+
+				.m8csb40, .m-8c-sb40, .m--8c--sb40, .m_8c_sb40, .m__8c__sb40 {
+					@include sidebarRight(40%, 8, "col col col col col col col col col");
+				}
+
+				.m9csb40, .m-9c-sb40, .m--9c--sb40, .m_9c_sb40, .m__9c__sb40 {
+					@include sidebarRight(40%, 9, "col col col col col col col col col col");
+				}
+
+				.m10csb40, .m-10c-sb40, .m--10c--sb40, .m_10c_sb40, .m__10c__sb40 {
+					@include sidebarRight(40%, 10, "col col col col col col col col col col col");
+				}
+
+				.m11csb40, .m-11c-sb40, .m--11c--sb40, .m_11c_sb40, .m__11c__sb40 {
+					@include sidebarRight(40%, 11, "col col col col col col col col col col col col");
+				}
+
+				.m12csb40, .m-12c-sb40, .m--12c--sb40, .m_12c_sb40, .m__12c__sb40 {
+					@include sidebarRight(40%, 12, "col col col col col col col col col col col col col");
+				}
+
+			/* [SIDEBAR RIGHT] 45 % Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+				.m1csb45, .m-1c-sb45, .m--1c--sb45, .m_1c_sb45, .m__1c__sb45 {
+					@include sidebarRight(45%, 1, "col col");
+				   }
+
+				   .m2csb45, .m-2c-sb45, .m--2c--sb45, .m_2c_sb45, .m__2c__sb45 {
+					@include sidebarRight(45%, 2, "col col col");
+				   }
+
+				   .m3csb45, .m-3c-sb45, .m--3c--sb45, .m_3c_sb45, .m__3c__sb45 {
+					@include sidebarRight(45%, 3, "col col col col");
+				   }
+
+				   .m4csb45, .m-4c-sb45, .m--4c--sb45, .m_4c_sb45, .m__4c__sb45 {
+					@include sidebarRight(45%, 4, "col col col col col");
+				   }
+
+				   .m5csb45, .m-5c-sb45, .m--5c--sb45, .m_5c_sb45, .m__5c__sb45 {
+					@include sidebarRight(45%, 5, "col col col col col col");
+				   }
+
+				   .m6csb45, .m-6c-sb45, .m--6c--sb45, .m_6c_sb45, .m__6c__sb45 {
+					@include sidebarRight(45%, 6, "col col col col col col col");
+				   }
+
+				   .m7csb45, .m-7c-sb45, .m--7c--sb45, .m_7c_sb45, .m__7c__sb45 {
+					@include sidebarRight(45%, 7, "col col col col col col col col");
+				   }
+
+				   .m8csb45, .m-8c-sb45, .m--8c--sb45, .m_8c_sb45, .m__8c__sb45 {
+					@include sidebarRight(45%, 8, "col col col col col col col col col");
+				   }
+
+				   .m9csb45, .m-9c-sb45, .m--9c--sb45, .m_9c_sb45, .m__9c__sb45 {
+					@include sidebarRight(45%, 9, "col col col col col col col col col col");
+				   }
+
+				   .m10csb45, .m-10c-sb45, .m--10c--sb45, .m_10c_sb45, .m__10c__sb45 {
+					@include sidebarRight(45%, 10, "col col col col col col col col col col col");
+				   }
+
+				   .m11csb45, .m-11c-sb45, .m--11c--sb45, .m_11c_sb45, .m__11c__sb45 {
+					@include sidebarRight(45%, 11, "col col col col col col col col col col col col");
+				   }
+
+				   .m12csb45, .m-12c-sb45, .m--12c--sb45, .m_12c_sb45, .m__12c__sb45 {
+					@include sidebarRight(45%, 12, "col col col col col col col col col col col col col");
+				   }
+
+			/* [SIDEBAR RIGHT] 50% Width Sidebar RIGHT SIDE / + Up to 12 Columns for Content on Left */
+
+				.m1csb50, .m-1c-sb50, .m--1c--sb50, .m_1c_sb50, .m__1c__sb50 {
+					@include sidebarRight(50%, 1, "col col");
+				}
+
+				.m2csb50, .m-2c-sb50, .m--2c--sb50, .m_2c_sb50, .m__2c__sb50 {
+					@include sidebarRight(50%, 2, "col col col");
+				}
+
+				.m3csb50, .m-3c-sb50, .m--3c--sb50, .m_3c_sb50, .m__3c__sb50 {
+					@include sidebarRight(50%, 3, "col col col col");
+				}
+
+				.m4csb50, .m-4c-sb50, .m--4c--sb50, .m_4c_sb50, .m__4c__sb50 {
+					@include sidebarRight(50%, 4, "col col col col col");
+				}
+
+				.m5csb50, .m-5c-sb50, .m--5c--sb50, .m_5c_sb50, .m__5c__sb50 {
+					@include sidebarRight(50%, 5, "col col col col col col");
+				}
+
+				.m6csb50, .m-6c-sb50, .m--6c--sb50, .m_6c_sb50, .m__6c__sb50 {
+					@include sidebarRight(50%, 6, "col col col col col col col");
+				}
+
+				.m7csb50, .m-7c-sb50, .m--7c--sb50, .m_7c_sb50, .m__7c__sb50 {
+					@include sidebarRight(50%, 7, "col col col col col col col col");
+				}
+
+				.m8csb50, .m-8c-sb50, .m--8c--sb50, .m_8c_sb50, .m__8c__sb50 {
+					@include sidebarRight(50%, 8, "col col col col col col col col col");
+				}
+
+				.m9csb50, .m-9c-sb50, .m--9c--sb50, .m_9c_sb50, .m__9c__sb50 {
+					@include sidebarRight(50%, 9, "col col col col col col col col col col");
+				}
+
+				.m10csb50, .m-10c-sb50, .m--10c--sb50, .m_10c_sb50, .m__10c__sb50 {
+					@include sidebarRight(50%, 10, "col col col col col col col col col col col");
+				}
+
+				.m11csb50, .m-11c-sb50, .m--11c--sb50, .m_11c_sb50, .m__11c__sb50 {
+					@include sidebarRight(50%, 11, "col col col col col col col col col col col col");
+				}
+
+				.m12csb50, .m-12c-sb50, .m--12c--sb50, .m_12c_sb50, .m__12c__sb50 {
+					@include sidebarRight(50%, 12, "col col col col col col col col col col col col col");
+				}
+
+		} // End of Mobile Layouts
