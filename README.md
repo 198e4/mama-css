@@ -1,4 +1,4 @@
-# MamaCSS
+# Mama CSS
 
 A simple and style independent CSS grid layout framework to build awesome user interfaces atop.
 
